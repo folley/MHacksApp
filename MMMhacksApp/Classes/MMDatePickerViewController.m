@@ -49,6 +49,7 @@
         NSInteger dotDay = i % DAYS;
         
         MMDateDot *dateDot = [[MMDateDot alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
+        dateDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
         dateDot.center = CGPointMake(240 + 140 * dotDay, 100);
         [dateDots addObject:dateDot];
         [self.view addSubview:dateDot];
@@ -60,7 +61,8 @@
         // Add dots to a view
         MMNodeDot *dot = __nodeDotViews[i];
         dot.center = [dateDots[i % DAYS] center];
-        [self.view addSubview:dot];
+        dot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
+        [self.view insertSubview:dot atIndex:0];
         
         // Add tap gesture recognizer
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -83,22 +85,42 @@
 {
     [super viewDidAppear:animated];
     
-    [self performSelector:@selector(_animateDotsToCorrectPositions) withObject:nil afterDelay:1.0];
-    [self performSelector:@selector(_connectDots) withObject:nil afterDelay:2.0];
+    [self performSelector:@selector(_showDaysDots) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(_animateDotsToCorrectPositions) withObject:nil afterDelay:1.6];
+    [self performSelector:@selector(_connectDots) withObject:nil afterDelay:2.2];
     [self performSelector:@selector(_addHoursLables) withObject:nil afterDelay:2.0];
     [self performSelector:@selector(_addHorizontalLines) withObject:nil afterDelay:2.0];
 }
 
 #pragma mark - MMDatePickerViewController ()
 
+- (void)_showDaysDots
+{
+    for (UIView *dateDot in self._dateDotViews) {
+        [UIView animateWithDuration:0.3 animations:^{
+            dateDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.3, 1.3);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.3 animations:^{
+                dateDot.transform = CGAffineTransformIdentity;
+            }];
+        }];
+    }
+}
+
 - (void)_connectDots
 {
     // Connect Date dots with first node dots
     for (NSInteger i=0; i<DAYS; i++) {
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
+        line.alpha = 0.f;
         [self.view insertSubview:line atIndex:0];
         [line connectBetweenView:self._dateDotViews[i]
                       secondView:self._nodeDotViews[i]];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            line.alpha = 1.f;
+        }];
+        
     }
 
     for (NSInteger j=0; j<HOURS-1; j++) {
@@ -107,9 +129,14 @@
             MMNodeDot *nodeDot = self._nodeDotViews[nodeDotIndex];
             MMNodeDot *nextNodeDot = self._nodeDotViews[nodeDotIndex + DAYS];
             MMConnectionLine *line = [[MMConnectionLine alloc] init];
+            line.alpha = 0.f;
             [self._nodesConnectionLines addObject:line];
             [self.view insertSubview:line atIndex:0];
             [line connectBetweenView:nodeDot secondView:nextNodeDot];
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                line.alpha = 1.f;
+            }];
         }
     }
 }
@@ -129,6 +156,11 @@
                                                         snapToPoint:dotCenter];
         snap.damping = 0.8f;
         [self._nodesAnimator addBehavior:snap];
+        
+        //
+        [UIView animateWithDuration:0.3 animations:^{
+            dot.transform = CGAffineTransformIdentity;
+        }];
     }
 }
 
@@ -137,6 +169,7 @@
     NSInteger randomHour = 9;
     for (NSInteger i=0; i<HOURS; i++) {
         UILabel *hourLabel = [[UILabel alloc] init];
+        hourLabel.font = [UIFont fontWithName:@"Raleway-Light" size:17.f];
         hourLabel.backgroundColor = [UIColor clearColor];
         hourLabel.textColor = [UIColor darkGrayColor];
         hourLabel.text = [NSString stringWithFormat:@"%i:00 %@", randomHour, randomHour < 12 ? @"AM" : @"PM"];
