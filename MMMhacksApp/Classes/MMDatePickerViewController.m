@@ -58,6 +58,7 @@
         NSInteger dotDay = i % DAYS;
         
         MMDateDot *dateDot = [[MMDateDot alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
+        dateDot.dateLabel.text = [NSString stringWithFormat:@"%i", 15 + i];
         dateDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
         dateDot.center = CGPointMake(240 + 140 * dotDay, 100);
         [dateDots addObject:dateDot];

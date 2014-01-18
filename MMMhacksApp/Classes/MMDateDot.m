@@ -29,7 +29,9 @@
         _dateLabel.textColor = [UIColor whiteColor];
         _dateLabel.text = @"15";
         _dateLabel.font = [UIFont fontWithName:@"Raleway-Light" size:36];
+        _dateLabel.textAlignment = NSTextAlignmentCenter;
         [_dateLabel sizeToFit];
+        _dateLabel.frame = CGRectMake(0, 0, _dateLabel.frame.size.width + 20, _dateLabel.frame.size.height);
         self.dateLabel.center = CGPointMake(self.frame.size.width/2.f,
                                             35);
         [self addSubview:_dateLabel];
