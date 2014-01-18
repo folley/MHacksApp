@@ -25,6 +25,8 @@
 		E64252FD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
 		E6425305188A7F1600549CAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E6425303188A7F1600549CAF /* InfoPlist.strings */; };
 		E6425307188A7F1600549CAF /* MMMhacksAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E6425306188A7F1600549CAF /* MMMhacksAppTests.m */; };
+		E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */; };
+		E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		E6425302188A7F1600549CAF /* MMMhacksAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMMhacksAppTests-Info.plist"; sourceTree = "<group>"; };
 		E6425304188A7F1600549CAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E6425306188A7F1600549CAF /* MMMhacksAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMMhacksAppTests.m; sourceTree = "<group>"; };
+		E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,8 @@
 		E64252DF188A7F1600549CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
+				E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */,
 				E64252E0188A7F1600549CAF /* MMMhacksApp-Info.plist */,
 				E64252E1188A7F1600549CAF /* InfoPlist.strings */,
 				E64252E4188A7F1600549CAF /* main.m */,
@@ -279,7 +285,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
+				E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
+				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

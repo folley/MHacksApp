@@ -27,6 +27,7 @@
         self.dateLabel.backgroundColor = [UIColor clearColor];
         self.dateLabel.textColor = [UIColor whiteColor];
         self.dateLabel.text = @"15 Mon";
+        self.dateLabel.font = [UIFont fontWithName:@"Raleway-Light" size:14];
         [self addSubview:self.dateLabel];
     }
     return self;
