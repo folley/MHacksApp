@@ -12,6 +12,8 @@
 		9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069677A188AA6AF00BD978B /* MMDateDot.m */; };
 		9069677E188AB40E00BD978B /* MMConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069677D188AB40E00BD978B /* MMConnectionLine.m */; };
 		90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696780188ABAD600BD978B /* MMStyleSheet.m */; };
+		90696784188AEF1000BD978B /* MMPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696783188AEF1000BD978B /* MMPerson.m */; };
+		90696786188AF05900BD978B /* michalAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696785188AF05900BD978B /* michalAvatar@2x.png */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -51,6 +53,9 @@
 		9069677D188AB40E00BD978B /* MMConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMConnectionLine.m; path = Classes/Views/MMConnectionLine.m; sourceTree = "<group>"; };
 		9069677F188ABAD600BD978B /* MMStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStyleSheet.h; path = Classes/MMStyleSheet.h; sourceTree = "<group>"; };
 		90696780188ABAD600BD978B /* MMStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStyleSheet.m; path = Classes/MMStyleSheet.m; sourceTree = "<group>"; };
+		90696782188AEF1000BD978B /* MMPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPerson.h; path = Classes/MMPerson.h; sourceTree = "<group>"; };
+		90696783188AEF1000BD978B /* MMPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPerson.m; path = Classes/MMPerson.m; sourceTree = "<group>"; };
+		90696785188AF05900BD978B /* michalAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "michalAvatar@2x.png"; path = "Images/michalAvatar@2x.png"; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +121,8 @@
 				E64252E8188A7F1600549CAF /* MMAppDelegate.m */,
 				9069677F188ABAD600BD978B /* MMStyleSheet.h */,
 				90696780188ABAD600BD978B /* MMStyleSheet.m */,
+				90696782188AEF1000BD978B /* MMPerson.h */,
+				90696783188AEF1000BD978B /* MMPerson.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -178,6 +185,7 @@
 		E64252DF188A7F1600549CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90696785188AF05900BD978B /* michalAvatar@2x.png */,
 				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
 				E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */,
 				E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */,
@@ -292,6 +300,7 @@
 				E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
 				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
+				90696786188AF05900BD978B /* michalAvatar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90696777188A97FA00BD978B /* MMNodeDot.m in Sources */,
+				90696784188AEF1000BD978B /* MMPerson.m in Sources */,
 				90696772188A979300BD978B /* MMDatePickerViewController.m in Sources */,
 				E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */,
 				9069677E188AB40E00BD978B /* MMConnectionLine.m in Sources */,

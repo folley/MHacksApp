@@ -10,9 +10,10 @@
 #import "MMNodeDot.h"
 #import "MMDateDot.h"
 #import "MMConnectionLine.h"
+#import "MMPerson.h"
 
 #define DAYS 5
-#define HOURS 6
+#define HOURS 5
 
 @interface MMDatePickerViewController ()
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) NSArray *_dateDotViews;
 @property (nonatomic, strong) UIDynamicAnimator *_nodesAnimator;
 @property (nonatomic, strong) NSMutableArray *_nodesConnectionLines;
+@property (nonatomic, strong) NSArray *_people;
 
 @end
 
@@ -35,6 +37,13 @@
     __nodesConnectionLines = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // People
+    NSMutableArray *allPeople = [[NSMutableArray alloc] initWithCapacity:5];
+    for (NSInteger i=0; i<5; i++) {
+        MMPerson *person = [[MMPerson alloc] init];
+        [allPeople addObject:person];
+    }
+    self._people = [allPeople mutableCopy];
     //
     for (NSInteger i=0; i< DAYS * HOURS; i++) {
         MMNodeDot *dot = [[MMNodeDot alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -90,9 +99,24 @@
     [self performSelector:@selector(_connectDots) withObject:nil afterDelay:2.2];
     [self performSelector:@selector(_addHoursLables) withObject:nil afterDelay:2.0];
     [self performSelector:@selector(_addHorizontalLines) withObject:nil afterDelay:2.0];
+    [self _addPeopleAvatars];
 }
 
 #pragma mark - MMDatePickerViewController ()
+
+- (void)_addPeopleAvatars
+{
+    for (NSInteger i=0; i<[self._people count]; i++) {
+        MMPerson *person = self._people[i];
+        UIImageView *avatarView = [[UIImageView alloc] initWithImage:person.avatarImage];
+        avatarView.frame = CGRectMake(0, 0, 60, 60);
+        avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
+        avatarView.clipsToBounds = YES;
+        avatarView.center = CGPointMake(260 + 110*i,
+                                        self.view.bounds.size.height - 100);
+        [self.view addSubview:avatarView];
+    }
+}
 
 - (void)_showDaysDots
 {
