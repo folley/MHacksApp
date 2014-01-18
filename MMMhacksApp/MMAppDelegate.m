@@ -7,9 +7,10 @@
 //
 
 #import "MMAppDelegate.h"
+#import "MMDatePickerViewController.h"
 
 @interface MMAppDelegate ()
-@property (nonatomic, strong) UIViewController *vc;
+
 @end
 
 @implementation MMAppDelegate
@@ -17,10 +18,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.vc = [UIViewController new];
-    self.vc.view.backgroundColor = [UIColor purpleColor];
+    UIViewController *vc = [MMDatePickerViewController new];
     
-    self.window.rootViewController = self.vc;
+    self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     
     return YES;

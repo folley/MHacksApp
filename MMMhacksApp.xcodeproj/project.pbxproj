@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		90696772188A979300BD978B /* MMDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696771188A979300BD978B /* MMDatePickerViewController.m */; };
+		90696777188A97FA00BD978B /* MMNodeDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696776188A97FA00BD978B /* MMNodeDot.m */; };
+		9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069677A188AA6AF00BD978B /* MMDateDot.m */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -36,6 +38,10 @@
 /* Begin PBXFileReference section */
 		90696770188A979300BD978B /* MMDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDatePickerViewController.h; path = Classes/MMDatePickerViewController.h; sourceTree = "<group>"; };
 		90696771188A979300BD978B /* MMDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDatePickerViewController.m; path = Classes/MMDatePickerViewController.m; sourceTree = "<group>"; };
+		90696775188A97FA00BD978B /* MMNodeDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMNodeDot.h; path = Classes/Views/MMNodeDot.h; sourceTree = "<group>"; };
+		90696776188A97FA00BD978B /* MMNodeDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMNodeDot.m; path = Classes/Views/MMNodeDot.m; sourceTree = "<group>"; };
+		90696779188AA6AF00BD978B /* MMDateDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDateDot.h; path = Classes/MMDateDot.h; sourceTree = "<group>"; };
+		9069677A188AA6AF00BD978B /* MMDateDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDateDot.m; path = Classes/MMDateDot.m; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -80,6 +86,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90696773188A97DB00BD978B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E64252F0188A7F1600549CAF /* MMViewController.h */,
+				E64252F1188A7F1600549CAF /* MMViewController.m */,
+				90696770188A979300BD978B /* MMDatePickerViewController.h */,
+				90696771188A979300BD978B /* MMDatePickerViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		90696774188A97E100BD978B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				E64252E7188A7F1600549CAF /* MMAppDelegate.h */,
+				E64252E8188A7F1600549CAF /* MMAppDelegate.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		90696778188A97FD00BD978B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				90696775188A97FA00BD978B /* MMNodeDot.h */,
+				90696776188A97FA00BD978B /* MMNodeDot.m */,
+				90696779188AA6AF00BD978B /* MMDateDot.h */,
+				9069677A188AA6AF00BD978B /* MMDateDot.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		E64252CC188A7F1600549CAF = {
 			isa = PBXGroup;
 			children = (
@@ -113,13 +150,10 @@
 		E64252DE188A7F1600549CAF /* MMMhacksApp */ = {
 			isa = PBXGroup;
 			children = (
-				E64252E7188A7F1600549CAF /* MMAppDelegate.h */,
-				E64252E8188A7F1600549CAF /* MMAppDelegate.m */,
-				E64252F0188A7F1600549CAF /* MMViewController.h */,
-				E64252F1188A7F1600549CAF /* MMViewController.m */,
-				90696770188A979300BD978B /* MMDatePickerViewController.h */,
-				90696771188A979300BD978B /* MMDatePickerViewController.m */,
+				90696774188A97E100BD978B /* Other */,
+				90696773188A97DB00BD978B /* Controllers */,
 				E64252F3188A7F1600549CAF /* Images.xcassets */,
+				90696778188A97FD00BD978B /* Views */,
 				E64252DF188A7F1600549CAF /* Supporting Files */,
 			);
 			path = MMMhacksApp;
@@ -251,8 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90696777188A97FA00BD978B /* MMNodeDot.m in Sources */,
 				90696772188A979300BD978B /* MMDatePickerViewController.m in Sources */,
 				E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */,
+				9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */,
 				E64252F2188A7F1600549CAF /* MMViewController.m in Sources */,
 				E64252E5188A7F1600549CAF /* main.m in Sources */,
 			);
@@ -379,6 +415,7 @@
 				GCC_PREFIX_HEADER = "MMMhacksApp/MMMhacksApp-Prefix.pch";
 				INFOPLIST_FILE = "MMMhacksApp/MMMhacksApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -392,6 +429,7 @@
 				GCC_PREFIX_HEADER = "MMMhacksApp/MMMhacksApp-Prefix.pch";
 				INFOPLIST_FILE = "MMMhacksApp/MMMhacksApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
