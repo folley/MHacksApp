@@ -9,12 +9,14 @@
 #import "MMDatePickerViewController.h"
 #import "MMNodeDot.h"
 #import "MMDateDot.h"
+#import "MMConnectionLine.h"
 
 #define DAYS 5
 #define HOURS 6
 
 @interface MMDatePickerViewController ()
 
+@property (nonatomic, strong) NSArray *_nodeDotViews;
 @property (nonatomic, strong) NSArray *_dateDotViews;
 @property (nonatomic, strong) UIDynamicAnimator *_nodesAnimator;
 
@@ -28,7 +30,7 @@
 {
     [super viewDidLoad];
     
-    __dateDotViews = [[NSArray alloc] init];
+    __nodeDotViews = [[NSArray alloc] init];
     self.view.backgroundColor = [UIColor whiteColor];
     
     //
@@ -37,7 +39,7 @@
         MMNodeDot *dot = [[MMNodeDot alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         [dotViews addObject:dot];
     }
-    __dateDotViews = [dotViews mutableCopy];
+    __nodeDotViews = [dotViews mutableCopy];
     
     // Set up date dots
     NSMutableArray *dateDots = [[NSMutableArray alloc] initWithCapacity:DAYS];
@@ -49,11 +51,12 @@
         [dateDots addObject:dateDot];
         [self.view addSubview:dateDot];
     }
+    __dateDotViews = [dateDots mutableCopy];
     
     // Set up dots
-    for (NSInteger i=0; i<[__dateDotViews count]; i++) {
+    for (NSInteger i=0; i<[__nodeDotViews count]; i++) {
         // Add dots to a view
-        MMNodeDot *dot = __dateDotViews[i];
+        MMNodeDot *dot = __nodeDotViews[i];
         dot.center = [dateDots[i % DAYS] center];
         [self.view addSubview:dot];
         
@@ -79,17 +82,42 @@
 {
     [super viewDidAppear:animated];
     
-    [self performSelector:@selector(_animateDotsToCorrectPositions) withObject:nil afterDelay:2.0];
-//    [self _animateDotsToCorrectPositions];
+    [self performSelector:@selector(_animateDotsToCorrectPositions) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(_connectDots) withObject:nil afterDelay:2.0];
+    //    [self _animateDotsToCorrectPositions];
 }
 
 #pragma mark - MMDatePickerViewController ()
 
+- (void)_connectDots
+{
+    // Connect Date dots with first node dots
+    for (NSInteger i=0; i<DAYS; i++) {
+        MMConnectionLine *line = [[MMConnectionLine alloc] init];
+        [self.view insertSubview:line atIndex:0];
+        [line connectBetweenView:self._dateDotViews[i]
+                      secondView:self._nodeDotViews[i]];
+    }
+
+    NSInteger count = 0;
+    for (NSInteger i=0; i<DAYS; i++) {
+        for (NSInteger j=0; j<HOURS-1; j++) {
+            NSInteger nodeDotIndex = i + DAYS*j;
+            MMNodeDot *nodeDot = self._nodeDotViews[nodeDotIndex];
+            MMNodeDot *nextNodeDot = self._nodeDotViews[nodeDotIndex + DAYS];
+            MMConnectionLine *line = [[MMConnectionLine alloc] init];
+            [self.view insertSubview:line atIndex:0];
+            [line connectBetweenView:nodeDot secondView:nextNodeDot];
+            count++;
+        }
+    }
+}
+
 - (void)_animateDotsToCorrectPositions
 {
-    for (NSInteger i=0; i<[__dateDotViews count]; i++) {
+    for (NSInteger i=0; i<[__nodeDotViews count]; i++) {
         // Add dots to a view
-        MMNodeDot *dot = __dateDotViews[i];
+        MMNodeDot *dot = __nodeDotViews[i];
         
         NSInteger dotDay = i % DAYS;
         NSInteger dotHour = i / HOURS;
@@ -108,7 +136,7 @@
 - (void)_handleTapGestureOnDot:(UITapGestureRecognizer *)gesture
 {
     NSInteger tappedDotIndex = gesture.view.tag;
-    MMNodeDot *tappedDot = self._dateDotViews[tappedDotIndex];
+    MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
     
     [UIView animateWithDuration:0.3 animations:^{
         tappedDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
@@ -128,7 +156,7 @@
             dot.selected = YES;
         }
         case UIGestureRecognizerStateChanged: {
-            for (MMNodeDot *dot in self._dateDotViews) {
+            for (MMNodeDot *dot in self._nodeDotViews) {
                 if (CGRectContainsPoint(dot.frame, location)) {
                     dot.selected = YES;
                     CGPoint transl = [gesture translationInView:gesture.view.superview];
