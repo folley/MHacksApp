@@ -26,7 +26,37 @@
 
 - (UIColor *)mainGrayColor
 {
-    return [UIColor colorWithWhite:176.f/255.f alpha:1.0];
+    return [UIColor colorWithWhite:125./255. alpha:1.0];
+}
+
+- (UIColor *)mainLightGrayColor
+{
+    return [UIColor colorWithWhite:215./255. alpha:1.0];
+}
+
+- (UIColor *)mainDarkGrayColor
+{
+    return [UIColor colorWithWhite:22./255. alpha:1.0];
+}
+
+- (UIColor *)navBarBgColor
+{
+    return [UIColor colorWithWhite:179./255. alpha:1.0];
+}
+
+- (UIColor *)blueColor
+{
+    return [UIColor colorWithRed:50/255. green:152/255. blue:218/255. alpha:1.];
+}
+
+- (UIColor *)greenColor
+{
+    return [UIColor colorWithRed:45/255. green:204/255. blue:112/255. alpha:1.];
+}
+
+- (UIColor *)redColor
+{
+    return [UIColor colorWithRed:231/255. green:75/255. blue:60/255. alpha:1.];
 }
 
 @end

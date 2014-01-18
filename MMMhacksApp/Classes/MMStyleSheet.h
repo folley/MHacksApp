@@ -13,5 +13,15 @@
 + (instancetype)sharedInstance;
 
 - (UIColor *)mainGrayColor;
+- (UIColor *)mainLightGrayColor;
+- (UIColor *)mainDarkGrayColor;
+
+- (UIColor *)blueColor;
+- (UIColor *)greenColor;
+- (UIColor *)redColor;
+
+- (UIColor *)navBarBgColor;
+
+
 
 @end
