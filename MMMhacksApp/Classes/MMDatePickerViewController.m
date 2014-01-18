@@ -17,12 +17,16 @@
 
 @interface MMDatePickerViewController ()
 
+@property (nonatomic, strong) UIDynamicAnimator *_nodesAnimator;
+@property (nonatomic, strong) UIDynamicAnimator *_avatarsAnimator;
+
 @property (nonatomic, strong) NSMutableArray *_nodeDotViews;
 @property (nonatomic, strong) NSArray *_dateDotViews;
-@property (nonatomic, strong) UIDynamicAnimator *_nodesAnimator;
 @property (nonatomic, strong) NSMutableArray *_nodesConnectionLines;
 @property (nonatomic, strong) NSArray *_people;
 
+@property (nonatomic, strong) NSMutableArray *_currentlyPresentedAvatars;
+@property (nonatomic, weak) MMNodeDot *_expandedNodeDot;
 @end
 
 @implementation MMDatePickerViewController
@@ -35,6 +39,7 @@
     
     __nodeDotViews = [[NSMutableArray alloc] init];
     __nodesConnectionLines = [[NSMutableArray alloc] init];
+    __currentlyPresentedAvatars = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor whiteColor];
     
     // People
@@ -77,11 +82,19 @@
         dot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
         [self.view insertSubview:dot atIndex:0];
         
+        
+        // Double gesture
+        
+        UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(_handleDoubleTapGesture:)];
+        doubleTapGesture.numberOfTapsRequired = 2;
+        [dot addGestureRecognizer:doubleTapGesture];
+        
         // Add tap gesture recognizer
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(_handleTapGestureOnDot:)];
+        [tapGesture requireGestureRecognizerToFail:doubleTapGesture];
         [dot addGestureRecognizer:tapGesture];
-        
         
         // Pan gesture
         UIPanGestureRecognizer *swipeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
@@ -92,6 +105,7 @@
     
     // Set up animator
     self._nodesAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    self._avatarsAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -278,15 +292,87 @@
     }
 }
 
+- (void)_showVotersFromNode:(MMNodeDot *)node
+{
+    NSArray *voters = self._people;
+    self._expandedNodeDot = node;
+    
+    for (NSInteger i=0; i<[voters count]; i++) {
+        MMPerson *person = voters[i];
+        UIImageView *avatarView = [[UIImageView alloc] initWithImage:person.avatarImage];
+        [self._currentlyPresentedAvatars addObject:avatarView];
+        
+        avatarView.frame = CGRectMake(0, 0, 50, 50);
+        avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
+        avatarView.clipsToBounds = YES;
+        avatarView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.f/100.f, 1.f/100.f);
+        [self.view addSubview:avatarView];
+        
+        CGFloat angleOffset = 2*M_PI / [voters count] * i;
+        CGFloat const RADIUS = 50;
+        CGFloat yOffset = sinf(2*M_PI - angleOffset) * RADIUS;
+        CGFloat xOffset = cosf(2*M_PI - angleOffset) * RADIUS;
+        
+        avatarView.center = node.center;
+        
+        // Animation
+        [UIView animateWithDuration:0.3 animations:^{
+            avatarView.transform = CGAffineTransformIdentity;
+        }];
+        
+        CGPoint snapPoint = CGPointMake(node.center.x + xOffset,
+                                        node.center.y + yOffset);
+        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:avatarView snapToPoint:snapPoint];
+        [self._avatarsAnimator addBehavior:snap];
+    }
+}
+
 #pragma mark - Gesture Handlers
 
 - (void)_handleTapGestureOnDot:(UITapGestureRecognizer *)gesture
 {
-    NSInteger tappedDotIndex = gesture.view.tag;
-    MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
+    switch (gesture.state) {
+        case UIGestureRecognizerStateRecognized: {
+            NSInteger tappedDotIndex = gesture.view.tag;
+            MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
+            
+            tappedDot.selected = !tappedDot.isSelected;
+            [self _updateConnectionLines];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)_handleDoubleTapGesture:(UITapGestureRecognizer *)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateRecognized: {
+            NSInteger tappedDotIndex = gesture.view.tag;
+            MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
+            [self _showVotersFromNode:tappedDot];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)_dismissVisibleAvatars
+{
+    [self._avatarsAnimator removeAllBehaviors];
+    for (UIView *view in self._currentlyPresentedAvatars) {
+        [UIView animateWithDuration:0.3 animations:^{
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.f/100.f, 1.f/100.f);
+            view.center = self._expandedNodeDot.center;
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+        }];
+    }
     
-    tappedDot.selected = !tappedDot.isSelected;
-    [self _updateConnectionLines];
+    [self._currentlyPresentedAvatars removeAllObjects];
 }
 
 - (void)_handlePanGesture:(UIPanGestureRecognizer *)gesture
@@ -335,6 +421,12 @@
         default:
             break;
     }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self _dismissVisibleAvatars];
 }
 
 @end
