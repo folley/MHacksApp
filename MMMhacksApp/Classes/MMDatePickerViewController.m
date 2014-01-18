@@ -46,7 +46,7 @@
     self._people = [allPeople mutableCopy];
     //
     for (NSInteger i=0; i< DAYS * HOURS; i++) {
-        MMNodeDot *dot = [[MMNodeDot alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        MMNodeDot *dot = [[MMNodeDot alloc] initWithFrame:CGRectMake(0, 0, 54, 54)];
         dot.tag = i;
         
         [__nodeDotViews addObject:dot];
