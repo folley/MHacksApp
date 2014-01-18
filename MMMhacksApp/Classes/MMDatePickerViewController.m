@@ -48,7 +48,7 @@
     for (NSInteger i=0; i<DAYS; i++) {
         NSInteger dotDay = i % DAYS;
         
-        MMDateDot *dateDot = [[MMDateDot alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        MMDateDot *dateDot = [[MMDateDot alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
         dateDot.center = CGPointMake(240 + 140 * dotDay, 100);
         [dateDots addObject:dateDot];
         [self.view addSubview:dateDot];

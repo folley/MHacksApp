@@ -24,6 +24,14 @@
         self.backgroundColor = [UIColor blackColor];
         
         // Date label
+<<<<<<< HEAD
+        self.dateLabel = [[UILabel alloc] initWithFrame:self.bounds];
+        self.dateLabel.backgroundColor = [UIColor clearColor];
+        self.dateLabel.textColor = [UIColor whiteColor];
+        self.dateLabel.text = @"15 Mon";
+        self.dateLabel.font = [UIFont fontWithName:@"Raleway-Light" size:14];
+        [self addSubview:self.dateLabel];
+=======
         _dateLabel = [[UILabel alloc] init];
         _dateLabel.backgroundColor = [UIColor clearColor];
         _dateLabel.textColor = [UIColor whiteColor];
@@ -44,6 +52,7 @@
         self.dayLabel.center = CGPointMake(self.bounds.size.width/2.f,
                                            self.bounds.size.height - _dayLabel.bounds.size.height);
         [self addSubview:_dayLabel];
+>>>>>>> New animations when selecting dot nodes.
     }
     return self;
 }

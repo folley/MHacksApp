@@ -19,13 +19,18 @@
     
     UIColor *toFadeColor = togglingToActive ? [UIColor blackColor] : [[MMStyleSheet sharedInstance] mainGrayColor];
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
+    UIView *animatedDot = [[UIView alloc] initWithFrame:self.bounds];
+    animatedDot.layer.cornerRadius = self.layer.cornerRadius;
+    animatedDot.backgroundColor = self.backgroundColor;
+    [self addSubview:animatedDot];
+    
+    [UIView animateWithDuration:0.6 animations:^{
+        animatedDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 2.5, 2.5);
+        animatedDot.alpha = 0.f;
+        
+        self.backgroundColor = toFadeColor;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.backgroundColor = toFadeColor;
-            self.transform = CGAffineTransformIdentity;
-        }];
+        [animatedDot removeFromSuperview];
     }];
     
     _selected = selected;
