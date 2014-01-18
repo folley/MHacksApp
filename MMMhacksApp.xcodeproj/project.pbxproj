@@ -14,6 +14,10 @@
 		90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696780188ABAD600BD978B /* MMStyleSheet.m */; };
 		90696784188AEF1000BD978B /* MMPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696783188AEF1000BD978B /* MMPerson.m */; };
 		90696786188AF05900BD978B /* michalAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696785188AF05900BD978B /* michalAvatar@2x.png */; };
+		9069678B188B2ABA00BD978B /* basia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696787188B2ABA00BD978B /* basia@2x.png */; };
+		9069678C188B2ABA00BD978B /* dave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696788188B2ABA00BD978B /* dave@2x.png */; };
+		9069678D188B2ABA00BD978B /* maciek@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696789188B2ABA00BD978B /* maciek@2x.png */; };
+		9069678E188B2ABA00BD978B /* raf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9069678A188B2ABA00BD978B /* raf@2x.png */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -56,6 +60,10 @@
 		90696782188AEF1000BD978B /* MMPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPerson.h; path = Classes/MMPerson.h; sourceTree = "<group>"; };
 		90696783188AEF1000BD978B /* MMPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPerson.m; path = Classes/MMPerson.m; sourceTree = "<group>"; };
 		90696785188AF05900BD978B /* michalAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "michalAvatar@2x.png"; path = "Images/michalAvatar@2x.png"; sourceTree = "<group>"; };
+		90696787188B2ABA00BD978B /* basia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "basia@2x.png"; path = "Images/basia@2x.png"; sourceTree = "<group>"; };
+		90696788188B2ABA00BD978B /* dave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dave@2x.png"; path = "Images/dave@2x.png"; sourceTree = "<group>"; };
+		90696789188B2ABA00BD978B /* maciek@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maciek@2x.png"; path = "Images/maciek@2x.png"; sourceTree = "<group>"; };
+		9069678A188B2ABA00BD978B /* raf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "raf@2x.png"; path = "Images/raf@2x.png"; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +193,10 @@
 		E64252DF188A7F1600549CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90696787188B2ABA00BD978B /* basia@2x.png */,
+				90696788188B2ABA00BD978B /* dave@2x.png */,
+				90696789188B2ABA00BD978B /* maciek@2x.png */,
+				9069678A188B2ABA00BD978B /* raf@2x.png */,
 				90696785188AF05900BD978B /* michalAvatar@2x.png */,
 				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
 				E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */,
@@ -295,12 +307,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9069678E188B2ABA00BD978B /* raf@2x.png in Resources */,
+				9069678C188B2ABA00BD978B /* dave@2x.png in Resources */,
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
 				E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */,
+				9069678D188B2ABA00BD978B /* maciek@2x.png in Resources */,
 				E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
 				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
 				90696786188AF05900BD978B /* michalAvatar@2x.png in Resources */,
+				9069678B188B2ABA00BD978B /* basia@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

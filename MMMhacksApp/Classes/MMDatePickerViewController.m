@@ -124,14 +124,20 @@
 
 - (void)_addPeopleAvatars
 {
+    NSArray *imagesNames = @[@"michalAvatar",
+                             @"basia",
+                             @"dave",
+                             @"maciek",
+                             @"raf"];
     for (NSInteger i=0; i<[self._people count]; i++) {
         MMPerson *person = self._people[i];
+        person.avatarImage = [UIImage imageNamed:imagesNames[i]];
         UIImageView *avatarView = [[UIImageView alloc] initWithImage:person.avatarImage];
         avatarView.frame = CGRectMake(0, 0, 60, 60);
         avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
         avatarView.clipsToBounds = YES;
-        avatarView.center = CGPointMake(260 + 110*i,
-                                        self.view.bounds.size.height - 100);
+        avatarView.center = CGPointMake(self.view.bounds.size.width - 80,
+                                        200 + 100*i);
         [self.view addSubview:avatarView];
     }
 }
@@ -323,6 +329,7 @@
         CGPoint snapPoint = CGPointMake(node.center.x + xOffset,
                                         node.center.y + yOffset);
         UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:avatarView snapToPoint:snapPoint];
+        snap.damping = 0.3;
         [self._avatarsAnimator addBehavior:snap];
     }
 }

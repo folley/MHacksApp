@@ -13,7 +13,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.avatarImage = [UIImage imageNamed:@"michalAvatar"];
+
     }
     return self;
 }
