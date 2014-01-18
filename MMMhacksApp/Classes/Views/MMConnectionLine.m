@@ -11,6 +11,20 @@
 
 @implementation MMConnectionLine
 
+#pragma mark - Setters
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    _highlighted = highlighted;
+    
+    if (_highlighted) {
+        self.backgroundColor = [UIColor blackColor];
+    }
+    else {
+        self.backgroundColor = [[MMStyleSheet sharedInstance] mainGrayColor];
+    }
+}
+
 #pragma mark - UIView
 
 - (instancetype)initWithFrame:(CGRect)frame

@@ -11,5 +11,6 @@
 @interface MMNodeDot : UIView
 
 @property (nonatomic, getter = isSelected) BOOL selected;
+@property (nonatomic, strong) NSArray *connectedNodes;
 
 @end

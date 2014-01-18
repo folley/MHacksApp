@@ -15,6 +15,7 @@ typedef NS_OPTIONS(NSUInteger, MMLineType) {
 
 @interface MMConnectionLine : UIView
 
+@property (nonatomic) BOOL highlighted;
 @property (nonatomic) MMLineType type;
 
 - (void)connectBetweenView:(UIView *)Aview secondView:(UIView *)BView;

@@ -17,19 +17,16 @@
 {
     BOOL togglingToActive = selected && !_selected;
     
-    if (togglingToActive) {
+    UIColor *toFadeColor = togglingToActive ? [UIColor blackColor] : [[MMStyleSheet sharedInstance] mainGrayColor];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
+    } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.3 animations:^{
-            self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.backgroundColor = [UIColor blackColor];
-                self.transform = CGAffineTransformIdentity;
-            }];
+            self.backgroundColor = toFadeColor;
+            self.transform = CGAffineTransformIdentity;
         }];
-    }
-    else {
-        self.backgroundColor = [UIColor blackColor];
-    }
+    }];
     
     _selected = selected;
 }
