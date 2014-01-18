@@ -7,6 +7,9 @@
 //
 
 #import "MMDateDot.h"
+#import "MMStyleSheet.h"
+
+const float kMargin = 10;
 
 @interface MMDateDot ()
 @property (nonatomic, readwrite) UILabel *dateLabel;
@@ -20,8 +23,23 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.layer.cornerRadius = frame.size.width/2.f;
-        self.backgroundColor = [UIColor blackColor];
+        
+        UIView *borderView = [[UIView alloc] initWithFrame:self.frame];
+        borderView.layer.cornerRadius = self.frame.size.width/2;
+        borderView.layer.borderColor = [[[MMStyleSheet sharedInstance] mainDarkGrayColor] CGColor];
+        borderView.layer.borderWidth = 1;
+        borderView.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
+        
+        [self addSubview:borderView];
+
+        
+        UIView *blueCircleView = [[UIView alloc] initWithFrame:CGRectMake(kMargin, kMargin,
+                                                                          self.frame.size.width-2*kMargin,
+                                                                          self.frame.size.height-2*kMargin)];
+        blueCircleView.layer.cornerRadius = blueCircleView.frame.size.width/2;
+        blueCircleView.backgroundColor = [[MMStyleSheet sharedInstance] blueColor];
+        
+        [self addSubview:blueCircleView];
         
         // Date label
         _dateLabel = [[UILabel alloc] init];
@@ -33,7 +51,7 @@
         [_dateLabel sizeToFit];
         _dateLabel.frame = CGRectMake(0, 0, _dateLabel.frame.size.width + 20, _dateLabel.frame.size.height);
         self.dateLabel.center = CGPointMake(self.frame.size.width/2.f,
-                                            33);
+                                            40);
         [self addSubview:_dateLabel];
         
         // Day label
@@ -44,7 +62,7 @@
         _dayLabel.font = [UIFont fontWithName:@"Raleway-Medium" size:15];
         [_dayLabel sizeToFit];
         self.dayLabel.center = CGPointMake(self.bounds.size.width/2.f,
-                                           self.bounds.size.height - _dayLabel.bounds.size.height-10);
+                                           self.bounds.size.height - _dayLabel.bounds.size.height-15);
         [self addSubview:_dayLabel];
     }
     return self;
