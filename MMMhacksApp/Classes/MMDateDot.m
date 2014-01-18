@@ -28,7 +28,7 @@
         _dateLabel.backgroundColor = [UIColor clearColor];
         _dateLabel.textColor = [UIColor whiteColor];
         _dateLabel.text = @"15";
-        _dateLabel.font = [UIFont boldSystemFontOfSize:36.f];
+        _dateLabel.font = [UIFont fontWithName:@"Raleway-Light" size:36];
         [_dateLabel sizeToFit];
         self.dateLabel.center = CGPointMake(self.frame.size.width/2.f,
                                             35);
@@ -39,7 +39,7 @@
         _dayLabel.backgroundColor = [UIColor clearColor];
         _dayLabel.textColor = [UIColor whiteColor];
         _dayLabel.text = @"Mon";
-        _dayLabel.font = [UIFont systemFontOfSize:21.f];
+        _dayLabel.font = [UIFont fontWithName:@"Raleway-Light" size:21];
         [_dayLabel sizeToFit];
         self.dayLabel.center = CGPointMake(self.bounds.size.width/2.f,
                                            self.bounds.size.height - _dayLabel.bounds.size.height);
