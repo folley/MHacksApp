@@ -11,5 +11,11 @@
 @interface MMPerson : NSObject
 
 @property (nonatomic, strong) UIImage *avatarImage;
+/**
+ Format:
+ @{<day> : @[0, 1, 2, ..],
+   <day2> : @[..........]}
+ */
+@property (nonatomic, strong) NSDictionary *rankedHours;
 
 @end

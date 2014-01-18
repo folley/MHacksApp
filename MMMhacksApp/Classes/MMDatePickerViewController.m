@@ -49,6 +49,7 @@
         [allPeople addObject:person];
     }
     self._people = [allPeople mutableCopy];
+    [self _fillPeopleWithData];
     //
     for (NSInteger i=0; i< DAYS * HOURS; i++) {
         MMNodeDot *dot = [[MMNodeDot alloc] initWithFrame:CGRectMake(0, 0, 54, 54)];
@@ -298,9 +299,54 @@
     }
 }
 
+
+- (void)_fillPeopleWithData
+{
+    NSDictionary *p1 = @{@0 : @[@0, @1, @2, @3, @4],
+                         @1 : @[@0, @2, @3, @4],
+                         @2 : @[@0, @1, @3, @4],
+                         @3 : @[@2, @3, @4],
+                         @4 : @[@4]};
+    NSDictionary *p2 = @{@0 : @[@2, @3, @4],
+                         @1 : @[@0, @1, @4],
+                         @2 : @[@0, @3, @4],
+                         @3 : @[@0],
+                         @4 : @[@0, @3, @4]};
+    NSDictionary *p3 = @{@0 : @[@0, @2, @3],
+                         @1 : @[@0, @1, @2, @4],
+                         @2 : @[@0, @1, @2, @3, @4],
+                         @3 : @[@0, @1, @4],
+                         @4 : @[@2, @3, @4]};
+    NSDictionary *p4 = @{@0 : @[@1, @2, @3],
+                         @1 : @[@0, @1, @3, @4],
+                         @2 : @[@2, @3, @4],
+                         @3 : @[@0, @2, @3],
+                         @4 : @[@3]};
+    NSDictionary *p5 = @{@0 : @[@4],
+                         @1 : @[@2, @3, @4],
+                         @2 : @[@0, @2, @3, @4],
+                         @3 : @[@0, @4],
+                         @4 : @[@0, @1, @3, @4]};
+    NSArray *data = @[p1, p2, p3, p4, p5];
+    
+    for (NSInteger i=0; i<[self._people count]; i++) {
+        MMPerson *person = self._people[i];
+        person.rankedHours = data[i];
+    }
+}
+
 - (void)_showVotersFromNode:(MMNodeDot *)node
 {
-    NSArray *voters = self._people;
+    NSInteger nodeDay = node.tag % DAYS;
+    NSInteger nodeHour = node.tag / DAYS;
+    // Find voters of this node
+    NSMutableArray *voters = [[NSMutableArray alloc] init];
+    for (MMPerson *person in self._people) {
+        if ([person.rankedHours[@(nodeDay)] containsObject:@(nodeHour)]) {
+            [voters addObject:person];
+        }
+    }
+    
     self._expandedNodeDot = node;
     
     for (NSInteger i=0; i<[voters count]; i++) {
