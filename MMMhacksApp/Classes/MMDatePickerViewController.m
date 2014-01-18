@@ -104,6 +104,28 @@
         
     }
     
+    // Bottom view
+    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                self.view.frame.size.height - 60,
+                                                                self.view.frame.size.width,
+                                                                60)];
+    bottomBar.backgroundColor = [UIColor colorWithRed:28./255. green:36./255. blue:43/255. alpha:1.0];
+    bottomBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    
+    UIButton *focusButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [focusButton setTitle:@"Focus" forState:UIControlStateNormal];
+    [focusButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [focusButton sizeToFit];
+    [focusButton addTarget:self action:@selector(_focusOnBest) forControlEvents:UIControlEventTouchUpInside];
+    focusButton.frame = CGRectMake(bottomBar.frame.size.width - focusButton.frame.size.width - 60,
+                                   0,
+                                   focusButton.frame.size.width,
+                                   bottomBar.frame.size.height);
+    focusButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [bottomBar addSubview:focusButton];
+    
+    [self.view addSubview:bottomBar];
+    
     // Set up animator
     self._nodesAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     self._avatarsAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -122,6 +144,46 @@
 }
 
 #pragma mark - MMDatePickerViewController ()
+
+- (void)_focusOnBest
+{
+    [self _choseNodeAndExplode:nil];
+    NSLog(@"YEA");
+}
+
+- (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
+{
+    NSMutableArray *particles = [[NSMutableArray alloc] initWithCapacity:50];
+    for (MMNodeDot *node in self._nodeDotViews) {
+        if (node == selectedNode) {
+            continue;
+        }
+        
+        // Create particles
+        for (NSInteger i=0; i<5; i++) {
+            UIView *particle = [[UIView alloc] initWithFrame:CGRectInset(node.frame, 15, 15)];
+            particle.backgroundColor = [UIColor darkGrayColor];
+            particle.layer.cornerRadius = particle.frame.size.width/2.f;
+            particle.clipsToBounds = YES;
+            [self.view addSubview:particle];
+            
+            [particles addObject:particle];
+            
+            // Push
+            UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[particle]
+                                                                    mode:UIPushBehaviorModeInstantaneous];
+            CGFloat randomX = 1. / (rand() % 100 + 1);
+            CGFloat randomY = 1. / (rand() % 100 + 1);
+            NSInteger randomSignX = rand() % 2 == 0 ? 1 : -1;
+            NSInteger randomSignY = rand() % 2 == 0 ? 1 : -1;
+            push.pushDirection = CGVectorMake(randomX * randomSignX,
+                                              randomY * randomSignY);
+            [self._nodesAnimator addBehavior:push];
+        }
+    }
+//    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:particles];
+//    [self._nodesAnimator addBehavior:gravity];
+}
 
 - (void)_addPeopleAvatars
 {
