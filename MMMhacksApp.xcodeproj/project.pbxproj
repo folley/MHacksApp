@@ -18,6 +18,16 @@
 		9069678C188B2ABA00BD978B /* dave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696788188B2ABA00BD978B /* dave@2x.png */; };
 		9069678D188B2ABA00BD978B /* maciek@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696789188B2ABA00BD978B /* maciek@2x.png */; };
 		9069678E188B2ABA00BD978B /* raf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9069678A188B2ABA00BD978B /* raf@2x.png */; };
+		90746FF8188B428C00CCB3DB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FF7188B428C00CCB3DB /* Parse.framework */; };
+		90746FFA188B42AB00CCB3DB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FF9188B42AB00CCB3DB /* AudioToolbox.framework */; };
+		90746FFC188B42B100CCB3DB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FFB188B42B100CCB3DB /* CFNetwork.framework */; };
+		90746FFE188B42BC00CCB3DB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FFD188B42BC00CCB3DB /* CoreLocation.framework */; };
+		90747000188B42C400CCB3DB /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FFF188B42C400CCB3DB /* libz.dylib */; };
+		90747002188B42CA00CCB3DB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747001188B42CA00CCB3DB /* MobileCoreServices.framework */; };
+		90747004188B42D000CCB3DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747003188B42D000CCB3DB /* QuartzCore.framework */; };
+		90747006188B42D500CCB3DB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747005188B42D500CCB3DB /* Security.framework */; };
+		90747008188B42DB00CCB3DB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747007188B42DB00CCB3DB /* StoreKit.framework */; };
+		9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747009188B42E200CCB3DB /* SystemConfiguration.framework */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -64,6 +74,16 @@
 		90696788188B2ABA00BD978B /* dave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dave@2x.png"; path = "Images/dave@2x.png"; sourceTree = "<group>"; };
 		90696789188B2ABA00BD978B /* maciek@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maciek@2x.png"; path = "Images/maciek@2x.png"; sourceTree = "<group>"; };
 		9069678A188B2ABA00BD978B /* raf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "raf@2x.png"; path = "Images/raf@2x.png"; sourceTree = "<group>"; };
+		90746FF7188B428C00CCB3DB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = MMMhacksApp/Parse.framework; sourceTree = "<group>"; };
+		90746FF9188B42AB00CCB3DB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		90746FFB188B42B100CCB3DB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		90746FFD188B42BC00CCB3DB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		90746FFF188B42C400CCB3DB /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		90747001188B42CA00CCB3DB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		90747003188B42D000CCB3DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		90747005188B42D500CCB3DB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		90747007188B42DB00CCB3DB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		90747009188B42E200CCB3DB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,8 +112,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */,
+				90747008188B42DB00CCB3DB /* StoreKit.framework in Frameworks */,
+				90747006188B42D500CCB3DB /* Security.framework in Frameworks */,
+				90747004188B42D000CCB3DB /* QuartzCore.framework in Frameworks */,
+				90747002188B42CA00CCB3DB /* MobileCoreServices.framework in Frameworks */,
+				90747000188B42C400CCB3DB /* libz.dylib in Frameworks */,
+				90746FFE188B42BC00CCB3DB /* CoreLocation.framework in Frameworks */,
 				E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */,
+				90746FFC188B42B100CCB3DB /* CFNetwork.framework in Frameworks */,
+				90746FFA188B42AB00CCB3DB /* AudioToolbox.framework in Frameworks */,
 				E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */,
+				90746FF8188B428C00CCB3DB /* Parse.framework in Frameworks */,
 				E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +200,16 @@
 		E64252D7188A7F1600549CAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90747009188B42E200CCB3DB /* SystemConfiguration.framework */,
+				90747007188B42DB00CCB3DB /* StoreKit.framework */,
+				90747005188B42D500CCB3DB /* Security.framework */,
+				90747003188B42D000CCB3DB /* QuartzCore.framework */,
+				90747001188B42CA00CCB3DB /* MobileCoreServices.framework */,
+				90746FFF188B42C400CCB3DB /* libz.dylib */,
+				90746FFD188B42BC00CCB3DB /* CoreLocation.framework */,
+				90746FFB188B42B100CCB3DB /* CFNetwork.framework */,
+				90746FF9188B42AB00CCB3DB /* AudioToolbox.framework */,
+				90746FF7188B428C00CCB3DB /* Parse.framework */,
 				E64252D8188A7F1600549CAF /* Foundation.framework */,
 				E64252DA188A7F1600549CAF /* CoreGraphics.framework */,
 				E64252DC188A7F1600549CAF /* UIKit.framework */,
@@ -466,6 +506,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Michal/Documents/Projects/MHacksApp/MHacksApp/MMMhacksApp,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMMhacksApp/MMMhacksApp-Prefix.pch";
 				INFOPLIST_FILE = "MMMhacksApp/MMMhacksApp-Info.plist";
@@ -483,6 +527,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Michal/Documents/Projects/MHacksApp/MHacksApp/MMMhacksApp,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMMhacksApp/MMMhacksApp-Prefix.pch";
 				INFOPLIST_FILE = "MMMhacksApp/MMMhacksApp-Info.plist";

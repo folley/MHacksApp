@@ -8,6 +8,7 @@
 
 #import "MMAppDelegate.h"
 #import "MMDatePickerViewController.h"
+#import <Parse/Parse.h>
 
 @interface MMAppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"9G528OANMCQn6DAKTSuLeEqUaH3BC0xIyZZg1SHI"
+                  clientKey:@"E71tKfOKzJZg2QvCfZopKCc1qaTBGd5odTE3iYkz"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UIViewController *vc = [MMDatePickerViewController new];
     
