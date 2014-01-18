@@ -6,6 +6,7 @@
 	<array>
 		<string>Raleway-Light.ttf</string>
 		<string>Raleway-Medium.ttf</string>
+		<string>fontawesome-webfont.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

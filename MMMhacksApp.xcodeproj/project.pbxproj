@@ -27,6 +27,7 @@
 		E6425307188A7F1600549CAF /* MMMhacksAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E6425306188A7F1600549CAF /* MMMhacksAppTests.m */; };
 		E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */; };
 		E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */; };
+		E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		E6425306188A7F1600549CAF /* MMMhacksAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMMhacksAppTests.m; sourceTree = "<group>"; };
 		E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
+		E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
+				E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */,
 				E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */,
 				E64252E0188A7F1600549CAF /* MMMhacksApp-Info.plist */,
 				E64252E1188A7F1600549CAF /* InfoPlist.strings */,
@@ -286,6 +289,7 @@
 			files = (
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
 				E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */,
+				E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
 				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
 			);
