@@ -84,6 +84,8 @@
     
     [self performSelector:@selector(_animateDotsToCorrectPositions) withObject:nil afterDelay:1.0];
     [self performSelector:@selector(_connectDots) withObject:nil afterDelay:2.0];
+    [self performSelector:@selector(_addHoursLables) withObject:nil afterDelay:2.0];
+    [self performSelector:@selector(_addHorizontalLines) withObject:nil afterDelay:2.0];
     //    [self _animateDotsToCorrectPositions];
 }
 
@@ -128,6 +130,37 @@
                                                         snapToPoint:dotCenter];
         snap.damping = 0.8f;
         [self._nodesAnimator addBehavior:snap];
+    }
+}
+
+- (void)_addHoursLables
+{
+    for (NSInteger i=0; i<HOURS; i++) {
+        UILabel *hourLabel = [[UILabel alloc] init];
+        hourLabel.backgroundColor = [UIColor clearColor];
+        hourLabel.textColor = [UIColor darkGrayColor];
+        hourLabel.text = @"9:00 AM";
+        [hourLabel sizeToFit];
+        [self.view addSubview:hourLabel];
+        
+        MMNodeDot *firstHourNode = self._nodeDotViews[DAYS*i];
+        
+        hourLabel.center = CGPointMake(firstHourNode.center.x - 150,
+                                       firstHourNode.center.y);
+    }
+}
+
+- (void)_addHorizontalLines
+{
+    for (NSInteger i=0; i<HOURS; i++) {
+        MMNodeDot *firstHourNode = self._nodeDotViews[DAYS*i];
+        MMNodeDot *lastHourNode = self._nodeDotViews[DAYS*i + DAYS-1];
+        
+        MMConnectionLine *line = [[MMConnectionLine alloc] init];
+        line.type = MMLineHorizontal;
+        [self.view insertSubview:line atIndex:0];
+        [line connectBetweenPoint:CGPointMake(firstHourNode.center.x - 100, firstHourNode.center.y)
+                      secondPoint:CGPointMake(lastHourNode.center.x, lastHourNode.center.y)];
     }
 }
 

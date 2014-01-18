@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_OPTIONS(NSUInteger, MMLineType) {
+    MMLineHorizontal,
+    MMLineVertical
+};
+
 @interface MMConnectionLine : UIView
 
+@property (nonatomic) MMLineType type;
+
 - (void)connectBetweenView:(UIView *)Aview secondView:(UIView *)BView;
+- (void)connectBetweenPoint:(CGPoint)APoint secondPoint:(CGPoint)BPoint;
 
 @end

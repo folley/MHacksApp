@@ -7,6 +7,7 @@
 //
 
 #import "MMNodeDot.h"
+#import "MMStyleSheet.h"
 
 @implementation MMNodeDot
 
@@ -21,7 +22,7 @@
             self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.backgroundColor = [UIColor darkGrayColor];
+                self.backgroundColor = [UIColor blackColor];
                 self.transform = CGAffineTransformIdentity;
             }];
         }];
@@ -38,7 +39,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor blackColor];
+        self.backgroundColor = [[MMStyleSheet sharedInstance] mainGrayColor];
         self.layer.cornerRadius = frame.size.width/2.f;
     }
     return self;

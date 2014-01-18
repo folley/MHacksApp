@@ -7,6 +7,7 @@
 //
 
 #import "MMConnectionLine.h"
+#import "MMStyleSheet.h"
 
 @implementation MMConnectionLine
 
@@ -15,7 +16,8 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [[MMStyleSheet sharedInstance] mainGrayColor];
+        self.type = MMLineVertical;
     }
     return self;
 }
@@ -24,10 +26,25 @@
 
 - (void)connectBetweenView:(UIView *)Aview secondView:(UIView *)BView
 {
-    self.frame = CGRectMake(Aview.center.x,
-                            Aview.center.y,
-                            4,
-                            BView.center.y - Aview.center.y);
+    [self connectBetweenPoint:Aview.center secondPoint:BView.center];
+}
+
+- (void)connectBetweenPoint:(CGPoint)APoint secondPoint:(CGPoint)BPoint
+{
+    switch (self.type) {
+        case MMLineVertical:
+            self.frame = CGRectMake(APoint.x,
+                                    APoint.y,
+                                    2,
+                                    BPoint.y - APoint.y);
+            break;
+        case MMLineHorizontal:
+            self.frame = CGRectMake(APoint.x,
+                                    APoint.y,
+                                    BPoint.x - APoint.x,
+                                    1);
+            break;
+    }
 }
 
 @end

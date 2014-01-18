@@ -11,6 +11,7 @@
 		90696777188A97FA00BD978B /* MMNodeDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696776188A97FA00BD978B /* MMNodeDot.m */; };
 		9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069677A188AA6AF00BD978B /* MMDateDot.m */; };
 		9069677E188AB40E00BD978B /* MMConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069677D188AB40E00BD978B /* MMConnectionLine.m */; };
+		90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696780188ABAD600BD978B /* MMStyleSheet.m */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 		9069677A188AA6AF00BD978B /* MMDateDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDateDot.m; path = Classes/MMDateDot.m; sourceTree = "<group>"; };
 		9069677C188AB40E00BD978B /* MMConnectionLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMConnectionLine.h; path = Classes/Views/MMConnectionLine.h; sourceTree = "<group>"; };
 		9069677D188AB40E00BD978B /* MMConnectionLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMConnectionLine.m; path = Classes/Views/MMConnectionLine.m; sourceTree = "<group>"; };
+		9069677F188ABAD600BD978B /* MMStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMStyleSheet.h; path = Classes/MMStyleSheet.h; sourceTree = "<group>"; };
+		90696780188ABAD600BD978B /* MMStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStyleSheet.m; path = Classes/MMStyleSheet.m; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -105,6 +108,8 @@
 			children = (
 				E64252E7188A7F1600549CAF /* MMAppDelegate.h */,
 				E64252E8188A7F1600549CAF /* MMAppDelegate.m */,
+				9069677F188ABAD600BD978B /* MMStyleSheet.h */,
+				90696780188ABAD600BD978B /* MMStyleSheet.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */,
 				9069677E188AB40E00BD978B /* MMConnectionLine.m in Sources */,
 				9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */,
+				90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */,
 				E64252F2188A7F1600549CAF /* MMViewController.m in Sources */,
 				E64252E5188A7F1600549CAF /* main.m in Sources */,
 			);
