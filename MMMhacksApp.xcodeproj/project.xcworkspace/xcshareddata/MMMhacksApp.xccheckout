@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BF0DFA75-9F51-4B33-A762-BB2AA71191AE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MMMhacksApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FCCC0D29-55CC-4C4F-87FF-202949BA63BF</key>
+		<string>ssh://github.com/folley/MHacksApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MMMhacksApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FCCC0D29-55CC-4C4F-87FF-202949BA63BF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/folley/MHacksApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FCCC0D29-55CC-4C4F-87FF-202949BA63BF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FCCC0D29-55CC-4C4F-87FF-202949BA63BF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MHacksApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90696772188A979300BD978B /* MMDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696771188A979300BD978B /* MMDatePickerViewController.m */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
 		E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E64252E1188A7F1600549CAF /* InfoPlist.strings */; };
 		E64252E5188A7F1600549CAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E64252E4188A7F1600549CAF /* main.m */; };
 		E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E64252E8188A7F1600549CAF /* MMAppDelegate.m */; };
-		E64252EC188A7F1600549CAF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64252EA188A7F1600549CAF /* Main_iPhone.storyboard */; };
-		E64252EF188A7F1600549CAF /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64252ED188A7F1600549CAF /* Main_iPad.storyboard */; };
 		E64252F2188A7F1600549CAF /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E64252F1188A7F1600549CAF /* MMViewController.m */; };
 		E64252F4188A7F1600549CAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E64252F3188A7F1600549CAF /* Images.xcassets */; };
 		E64252FB188A7F1600549CAF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252FA188A7F1600549CAF /* XCTest.framework */; };
@@ -35,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90696770188A979300BD978B /* MMDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDatePickerViewController.h; path = Classes/MMDatePickerViewController.h; sourceTree = "<group>"; };
+		90696771188A979300BD978B /* MMDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDatePickerViewController.m; path = Classes/MMDatePickerViewController.m; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,8 +46,6 @@
 		E64252E6188A7F1600549CAF /* MMMhacksApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMMhacksApp-Prefix.pch"; sourceTree = "<group>"; };
 		E64252E7188A7F1600549CAF /* MMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		E64252E8188A7F1600549CAF /* MMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
-		E64252EB188A7F1600549CAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E64252EE188A7F1600549CAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		E64252F0188A7F1600549CAF /* MMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
 		E64252F1188A7F1600549CAF /* MMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
 		E64252F3188A7F1600549CAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -116,10 +115,10 @@
 			children = (
 				E64252E7188A7F1600549CAF /* MMAppDelegate.h */,
 				E64252E8188A7F1600549CAF /* MMAppDelegate.m */,
-				E64252EA188A7F1600549CAF /* Main_iPhone.storyboard */,
-				E64252ED188A7F1600549CAF /* Main_iPad.storyboard */,
 				E64252F0188A7F1600549CAF /* MMViewController.h */,
 				E64252F1188A7F1600549CAF /* MMViewController.m */,
+				90696770188A979300BD978B /* MMDatePickerViewController.h */,
+				90696771188A979300BD978B /* MMDatePickerViewController.m */,
 				E64252F3188A7F1600549CAF /* Images.xcassets */,
 				E64252DF188A7F1600549CAF /* Supporting Files */,
 			);
@@ -232,9 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E64252EF188A7F1600549CAF /* Main_iPad.storyboard in Resources */,
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
-				E64252EC188A7F1600549CAF /* Main_iPhone.storyboard in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90696772188A979300BD978B /* MMDatePickerViewController.m in Sources */,
 				E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */,
 				E64252F2188A7F1600549CAF /* MMViewController.m in Sources */,
 				E64252E5188A7F1600549CAF /* main.m in Sources */,
@@ -285,22 +283,6 @@
 				E64252E2188A7F1600549CAF /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E64252EA188A7F1600549CAF /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E64252EB188A7F1600549CAF /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		E64252ED188A7F1600549CAF /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E64252EE188A7F1600549CAF /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		E6425303188A7F1600549CAF /* InfoPlist.strings */ = {
@@ -475,6 +457,7 @@
 				E642530C188A7F1600549CAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E642530D188A7F1600549CAF /* Build configuration list for PBXNativeTarget "MMMhacksAppTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +466,7 @@
 				E642530F188A7F1600549CAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

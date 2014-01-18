@@ -8,11 +8,21 @@
 
 #import "MMAppDelegate.h"
 
+@interface MMAppDelegate ()
+@property (nonatomic, strong) UIViewController *vc;
+@end
+
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.vc = [UIViewController new];
+    self.vc.view.backgroundColor = [UIColor purpleColor];
+    
+    self.window.rootViewController = self.vc;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							
