@@ -10,9 +10,13 @@
 #import "MMNodeDot.h"
 #import "MMDateDot.h"
 
+#define DAYS 5
+#define HOURS 6
+
 @interface MMDatePickerViewController ()
 
 @property (nonatomic, strong) NSArray *_dateDotViews;
+@property (nonatomic, strong) UIDynamicAnimator *_nodesAnimator;
 
 @end
 
@@ -27,10 +31,8 @@
     __dateDotViews = [[NSArray alloc] init];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSInteger const DAYS = 5;
-    NSInteger const HOURS = 6;
     //
-    NSMutableArray *dotViews = [[NSMutableArray alloc] initWithCapacity:5 * 6];
+    NSMutableArray *dotViews = [[NSMutableArray alloc] initWithCapacity:DAYS * HOURS];
     for (NSInteger i=0; i< DAYS * HOURS; i++) {
         MMNodeDot *dot = [[MMNodeDot alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         [dotViews addObject:dot];
@@ -38,11 +40,13 @@
     __dateDotViews = [dotViews mutableCopy];
     
     // Set up date dots
+    NSMutableArray *dateDots = [[NSMutableArray alloc] initWithCapacity:DAYS];
     for (NSInteger i=0; i<DAYS; i++) {
         NSInteger dotDay = i % DAYS;
         
         MMDateDot *dateDot = [[MMDateDot alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         dateDot.center = CGPointMake(240 + 140 * dotDay, 100);
+        [dateDots addObject:dateDot];
         [self.view addSubview:dateDot];
     }
     
@@ -50,21 +54,14 @@
     for (NSInteger i=0; i<[__dateDotViews count]; i++) {
         // Add dots to a view
         MMNodeDot *dot = __dateDotViews[i];
-        
-        NSInteger dotDay = i % DAYS;
-        NSInteger dotHour = i / HOURS;
-        
-        dot.center = CGPointMake(240 + 140 * dotDay,
-                                 200 + 100 * dotHour);
+        dot.center = [dateDots[i % DAYS] center];
         [self.view addSubview:dot];
-        
         
         // Add tap gesture recognizer
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                      action:@selector(_handleTapGestureOnDot:)];
         dot.tag = i;
-//        [dot addGestureRecognizer:tapGesture];
-        
+        [dot addGestureRecognizer:tapGesture];
         
         
         // Pan gesture
@@ -73,9 +70,40 @@
         [dot addGestureRecognizer:swipeGesture];
         
     }
+    
+    // Set up animator
+    self._nodesAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self performSelector:@selector(_animateDotsToCorrectPositions) withObject:nil afterDelay:2.0];
+//    [self _animateDotsToCorrectPositions];
 }
 
 #pragma mark - MMDatePickerViewController ()
+
+- (void)_animateDotsToCorrectPositions
+{
+    for (NSInteger i=0; i<[__dateDotViews count]; i++) {
+        // Add dots to a view
+        MMNodeDot *dot = __dateDotViews[i];
+        
+        NSInteger dotDay = i % DAYS;
+        NSInteger dotHour = i / HOURS;
+        
+        CGPoint dotCenter = CGPointMake(240 + 140 * dotDay,
+                                        200 + 100 * dotHour);
+        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:dot
+                                                        snapToPoint:dotCenter];
+        snap.damping = 0.8f;
+        [self._nodesAnimator addBehavior:snap];
+    }
+}
+
+#pragma mark - Gesture Handlers
 
 - (void)_handleTapGestureOnDot:(UITapGestureRecognizer *)gesture
 {
@@ -91,7 +119,7 @@
     }];
 }
 
-- (void)_handlePanGesture:(UISwipeGestureRecognizer *)gesture
+- (void)_handlePanGesture:(UIPanGestureRecognizer *)gesture
 {
     CGPoint location = [gesture locationInView:gesture.view.superview];
     switch (gesture.state) {
@@ -103,6 +131,14 @@
             for (MMNodeDot *dot in self._dateDotViews) {
                 if (CGRectContainsPoint(dot.frame, location)) {
                     dot.selected = YES;
+                    CGPoint transl = [gesture translationInView:gesture.view.superview];
+                    if (dot.tag != 99) {
+                        UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[dot] mode:UIPushBehaviorModeInstantaneous];
+                        push.pushDirection = CGVectorMake(-transl.x, -transl.y);
+                        push.magnitude = 0.4f;
+                        [self._nodesAnimator addBehavior:push];
+                    }
+                    dot.tag = 99;
                 }
             }
         }
