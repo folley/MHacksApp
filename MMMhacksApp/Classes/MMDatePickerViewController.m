@@ -54,11 +54,14 @@
     
     // Set up date dots
     NSMutableArray *dateDots = [[NSMutableArray alloc] initWithCapacity:DAYS];
+    NSMutableArray *weekdaysNames = @[@"monday", @"tuesday", @"wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday"];
+    
     for (NSInteger i=0; i<DAYS; i++) {
         NSInteger dotDay = i % DAYS;
         
         MMDateDot *dateDot = [[MMDateDot alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
         dateDot.dateLabel.text = [NSString stringWithFormat:@"%i", 15 + i];
+        dateDot.dayLabel.text = [((NSString *)[weekdaysNames objectAtIndex:i]).uppercaseString substringToIndex:3];
         dateDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
         dateDot.center = CGPointMake(240 + 140 * dotDay, 100);
         [dateDots addObject:dateDot];

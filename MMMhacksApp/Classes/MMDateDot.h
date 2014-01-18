@@ -11,5 +11,6 @@
 @interface MMDateDot : UIView
 
 @property (nonatomic, readonly) UILabel *dateLabel;
+@property (nonatomic, readonly) UILabel *dayLabel;
 
 @end

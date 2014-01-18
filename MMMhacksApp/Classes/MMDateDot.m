@@ -33,7 +33,7 @@
         [_dateLabel sizeToFit];
         _dateLabel.frame = CGRectMake(0, 0, _dateLabel.frame.size.width + 20, _dateLabel.frame.size.height);
         self.dateLabel.center = CGPointMake(self.frame.size.width/2.f,
-                                            35);
+                                            33);
         [self addSubview:_dateLabel];
         
         // Day label
@@ -41,10 +41,10 @@
         _dayLabel.backgroundColor = [UIColor clearColor];
         _dayLabel.textColor = [UIColor whiteColor];
         _dayLabel.text = @"Mon";
-        _dayLabel.font = [UIFont fontWithName:@"Raleway-Light" size:21];
+        _dayLabel.font = [UIFont fontWithName:@"Raleway-Medium" size:15];
         [_dayLabel sizeToFit];
         self.dayLabel.center = CGPointMake(self.bounds.size.width/2.f,
-                                           self.bounds.size.height - _dayLabel.bounds.size.height);
+                                           self.bounds.size.height - _dayLabel.bounds.size.height-10);
         [self addSubview:_dayLabel];
     }
     return self;
