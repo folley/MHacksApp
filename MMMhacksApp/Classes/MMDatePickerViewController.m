@@ -203,13 +203,18 @@
 
 - (void)_addPeopleAvatars
 {
+    UIView *sidebarBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-100, 0,
+                                                                 100, self.view.frame.size.height)];
+    sidebarBg.backgroundColor = [[MMStyleSheet sharedInstance] mainGrayColor];
+    [self.view addSubview:sidebarBg];
+    
     for (NSInteger i=0; i<[self._people count]; i++) {
         MMPerson *person = self._people[i];
         UIImageView *avatarView = [[UIImageView alloc] initWithImage:person.avatarImage];
         avatarView.frame = CGRectMake(0, 0, 60, 60);
         avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
         avatarView.clipsToBounds = YES;
-        avatarView.center = CGPointMake(self.view.bounds.size.width - 80,
+        avatarView.center = CGPointMake(self.view.bounds.size.width - 50,
                                         200 + 100*i);
         [self.view addSubview:avatarView];
     }
