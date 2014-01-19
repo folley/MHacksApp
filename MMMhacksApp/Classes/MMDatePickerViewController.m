@@ -163,6 +163,8 @@
 - (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
 {
     NSMutableArray *particles = [[NSMutableArray alloc] initWithCapacity:50];
+    [self._nodesAnimator removeAllBehaviors];
+    
     for (MMNodeDot *node in self._nodeDotViews) {
         if (node == selectedNode) {
             continue;
@@ -189,9 +191,11 @@
                                               randomY * randomSignY);
             [self._nodesAnimator addBehavior:push];
         }
+    
+        [particles addObject:node];
     }
-//    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:particles];
-//    [self._nodesAnimator addBehavior:gravity];
+    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:particles];
+    [self._nodesAnimator addBehavior:gravity];
 }
 
 - (void)_addPeopleAvatars
