@@ -163,6 +163,7 @@
 
 - (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
 {
+    NSLog(@"EXPLODE");
     NSMutableArray *particles = [[NSMutableArray alloc] initWithCapacity:50];
     [self._nodesAnimator removeAllBehaviors];
     
@@ -173,7 +174,9 @@
         
         // Create particles
         for (NSInteger i=0; i<5; i++) {
-            UIView *particle = [[UIView alloc] initWithFrame:CGRectInset(node.frame, 15, 15)];
+            UIView *particle = [[UIView alloc] init];
+            particle.frame = CGRectMake(0, 0, 10, 10);
+            particle.center = [node convertPoint:node.center toView:self.view.superview];
             particle.backgroundColor = [UIColor darkGrayColor];
             particle.layer.cornerRadius = particle.frame.size.width/2.f;
             particle.clipsToBounds = YES;
@@ -184,19 +187,32 @@
             // Push
             UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[particle]
                                                                     mode:UIPushBehaviorModeInstantaneous];
-            CGFloat randomX = 1. / (rand() % 100 + 1);
-            CGFloat randomY = 1. / (rand() % 100 + 1);
+            CGFloat randomX = 1. / (rand() % 200 + 1);
+            CGFloat randomY = 1. / (rand() % 200 + 1);
             NSInteger randomSignX = rand() % 2 == 0 ? 1 : -1;
             NSInteger randomSignY = rand() % 2 == 0 ? 1 : -1;
             push.pushDirection = CGVectorMake(randomX * randomSignX,
                                               randomY * randomSignY);
             [self._nodesAnimator addBehavior:push];
+            
+            [UIView animateWithDuration:1.6 animations:^{
+                particle.alpha = 0.f;
+                particle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+                
+                node.alpha = 0.f;
+                node.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+            }];
         }
     
-        [particles addObject:node];
+//        [particles addObject:node];
     }
-    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:particles];
-    [self._nodesAnimator addBehavior:gravity];
+//    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:particles];
+//    [self._nodesAnimator addBehavior:gravity];
+    
+    // Hide lines
+    for (UIView *view in self._nodesConnectionLines) {
+        view.alpha = 0.f;
+    }
 }
 
 - (void)_addPeopleAvatars
