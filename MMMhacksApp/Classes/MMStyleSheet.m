@@ -26,12 +26,12 @@
 
 - (UIColor *)mainGrayColor
 {
-    return [UIColor colorWithWhite:125./255. alpha:1.0];
+    return [UIColor colorWithWhite:175./255. alpha:1.0];
 }
 
 - (UIColor *)mainLightGrayColor
 {
-    return [UIColor colorWithWhite:212./255. alpha:1.0];
+    return [UIColor colorWithWhite:232./255. alpha:1.0];
 }
 
 - (UIColor *)mainDarkGrayColor
