@@ -35,14 +35,14 @@
 <<<<<<< HEAD
 
 @property (nonatomic, strong) NSMutableArray *_otherShitViews;
-
 @property (nonatomic, strong) NSMutableArray *_avatars;
-
 =======
-@property (nonatomic, strong) NSMutableArray *_otherShitViews;@end
+@property (nonatomic, strong) NSMutableArray *_otherShitViews;
+>>>>>>> Save important dots
 @property (nonatomic, strong) UIView *noiseBG;
->>>>>>> Profile picture checkbox.
+
 @end
+
 @implementation MMDatePickerViewController
 
 - (instancetype)initWithMainPerson:(MMPerson *)myPerson people:(NSArray *)people
@@ -54,6 +54,32 @@
     return self;
 }
 
+- (void)_loadPeopleData
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"MMPerson"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"downloaded");
+        if (!error) {
+            NSMutableArray *allPeople = [[NSMutableArray alloc] initWithCapacity:5];
+            for (PFObject *parseObject in objects) {
+                MMPerson *person = [[MMPerson alloc] initWithParseObject:parseObject];
+                [allPeople addObject:person];
+                
+                if ([[person.parseObject objectId] isEqualToString:@"MAqQNyRsJj"]) {
+                    self._myPerson = person;
+                }
+            }
+            self._people = [allPeople mutableCopy];
+            [self _fillPeopleWithData];
+            NSLog(@"adding avatars");
+            [self _addPeopleAvatars];
+            
+            [self _configureNodesAppearance];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
@@ -151,32 +177,61 @@
 
 - (void)_focusOnBest
 {
-    [self _choseNodeAndExplode:self._nodeDotViews[4]];
+    [self _explodeNodesExcept:@[self._nodeDotViews[1],
+                                self._nodeDotViews[4],
+                                self._nodeDotViews[6],
+                                self._nodeDotViews[7]]];
 }
 
-- (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
+
+- (BOOL)table:(NSArray *)table contains:(MMNodeDot *)dot
 {
-    NSLog(@"EXPLODE");
+    for (MMNodeDot *nextDot in table) {
+        if (nextDot == dot) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)_explodeNodesExcept:(NSArray *)chosenNodes
+{
     NSMutableArray *particles = [[NSMutableArray alloc] initWithCapacity:50];
     [self._nodesAnimator removeAllBehaviors];
     
+    MMNodeDot *selectedNode;
+    if (chosenNodes[0]) {
+        selectedNode = chosenNodes[0];
+    }
+    
     for (MMNodeDot *node in self._nodeDotViews) {
-        if (node == selectedNode) {
+        if ([self table:chosenNodes contains:node]) {
             continue;
         }
         
         // Create particles
         for (NSInteger i=0; i<5; i++) {
             UIView *particle = [[UIView alloc] init];
-            particle.frame = CGRectMake(0, 0, 10, 10);
+            particle.frame = CGRectMake(0, 0, selectedNode.frame.size.width/2, selectedNode.frame.size.height/2);
             particle.center = [node.superview convertPoint:node.center
                                                     toView:self.view];
-            particle.backgroundColor = [UIColor darkGrayColor];
+            particle.backgroundColor = node._dotView.backgroundColor;
             particle.layer.cornerRadius = particle.frame.size.width/2.f;
             particle.clipsToBounds = YES;
             [self.view addSubview:particle];
             
             [particles addObject:particle];
+            
+            node.alpha = 0.;
+            
+            
+            CABasicAnimation *anim1 = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+            anim1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+            anim1.fromValue = [NSNumber numberWithFloat:particle.layer.cornerRadius];
+            anim1.toValue = [NSNumber numberWithFloat:0.0f];
+            anim1.duration = 2;
+            [particle.layer addAnimation:anim1 forKey:@"cornerRadius"];
+            
             
             // Push
             UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[particle]
@@ -187,14 +242,12 @@
             NSInteger randomSignY = rand() % 2 == 0 ? 1 : -1;
             push.pushDirection = CGVectorMake(randomX * randomSignX,
                                               randomY * randomSignY);
+            push.magnitude = 0.15;
             [self._nodesAnimator addBehavior:push];
             
             [UIView animateWithDuration:1.6 animations:^{
                 particle.alpha = 0.f;
-                particle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-                
-                node.alpha = 0.f;
-                node.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+                particle.frame = CGRectMake(particle.frame.origin.x, particle.frame.origin.y, 0, 0);
             }];
         }
     }
@@ -224,7 +277,7 @@
             selectedNode._dotView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
             selectedNode._dotView.backgroundColor = [UIColor greenColor];
         } completion:^(BOOL finished) {
-
+            
             UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [confirmButton setTitle:@"Send confirmation" forState:UIControlStateNormal];
             [confirmButton sizeToFit];
@@ -236,7 +289,100 @@
             [self.view addSubview:confirmButton];
         }];
     }];
+
 }
+
+//- (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
+//{
+//    NSMutableArray *particles = [[NSMutableArray alloc] initWithCapacity:50];
+//    [self._nodesAnimator removeAllBehaviors];
+//    
+//    for (MMNodeDot *node in self._nodeDotViews) {
+//        if (node == selectedNode) {
+//            continue;
+//        }
+//        
+//        // Create particles
+//        for (NSInteger i=0; i<7; i++) {
+//            UIView *particle = [[UIView alloc] init];
+//            particle.frame = CGRectMake(0, 0, selectedNode.frame.size.width/2, selectedNode.frame.size.height/2);
+//            particle.center = [node.superview convertPoint:node.center
+//                                                    toView:self.view];
+//            particle.backgroundColor = node._dotView.backgroundColor;
+//            particle.layer.cornerRadius = particle.frame.size.width/2.f;
+//            particle.clipsToBounds = YES;
+//            [self.view addSubview:particle];
+//            
+//            [particles addObject:particle];
+//            
+//            node.alpha = 0.;
+//            
+//
+//            CABasicAnimation *anim1 = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
+//            anim1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//            anim1.fromValue = [NSNumber numberWithFloat:particle.layer.cornerRadius];
+//            anim1.toValue = [NSNumber numberWithFloat:0.0f];
+//            anim1.duration = 2;
+//            [particle.layer addAnimation:anim1 forKey:@"cornerRadius"];
+//            
+//            
+//            // Push
+//            UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[particle]
+//                                                                    mode:UIPushBehaviorModeInstantaneous];
+//            CGFloat randomX = 1. / (rand() % 200 + 100);
+//            CGFloat randomY = 1. / (rand() % 200 + 100);
+//            NSInteger randomSignX = rand() % 2 == 0 ? 1 : -1;
+//            NSInteger randomSignY = rand() % 2 == 0 ? 1 : -1;
+//            push.pushDirection = CGVectorMake(randomX * randomSignX,
+//                                              randomY * randomSignY);
+//            push.magnitude = 0.15;
+//            [self._nodesAnimator addBehavior:push];
+//            
+//            [UIView animateWithDuration:1.6 animations:^{
+//                particle.alpha = 0.f;
+//                particle.frame = CGRectMake(particle.frame.origin.x, particle.frame.origin.y, 0, 0);
+//            }];
+//        }
+//    }
+//    
+//    [UIView animateWithDuration:0.5 animations:^{
+//        for (UIView *view in self._nodesConnectionLines) {
+//            view.alpha = 0.f;
+//        }
+//        
+//        for (UIView *view in self._dateDotViews) {
+//            view.alpha = 0.f;
+//            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+//        }
+//        
+//        for (UIView *view in self._otherShitViews) {
+//            view.alpha = 0.f;
+//            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+//        }
+//    }];
+//    
+//    
+//    [UIView animateWithDuration:1.0 animations:^{
+//        selectedNode.center = CGPointMake(self.view.frame.size.height/2.f,
+//                                          self.view.frame.size.width/2.f);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.7 animations:^{
+//            selectedNode._dotView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+//            selectedNode._dotView.backgroundColor = [UIColor greenColor];
+//        } completion:^(BOOL finished) {
+//
+//            UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//            [confirmButton setTitle:@"Send confirmation" forState:UIControlStateNormal];
+//            [confirmButton sizeToFit];
+//            [confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            [confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+//            confirmButton.center = CGPointMake(self.view.frame.size.height/2.f,
+//                                               self.view.frame.size.width/2.f + 60);
+//            [confirmButton addTarget:self action:@selector(_sendConfirmation) forControlEvents:UIControlEventTouchUpInside];
+//            [self.view addSubview:confirmButton];
+//        }];
+//    }];
+//}
 
 - (void)_addPeopleAvatars
 {
@@ -259,7 +405,6 @@
         avatarView.frame = CGRectMake(0, 0, 45, 45);
         avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
         avatarView.clipsToBounds = YES;
-<<<<<<< HEAD
         avatarView.center = CGPointMake(sidebarBg.bounds.size.width - 50,
                                         200 + 100*i);
         avatarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -272,17 +417,6 @@
         [sidebarBg addSubview:btn];
         btn.tag = i;
         [btn addTarget:self action:@selector(_switchUser:) forControlEvents:UIControlEventTouchUpInside];
-=======
-        avatarView.center = CGPointMake(self.view.bounds.size.width - 50,
-                                        200 + 80*i);
-        [self.view addSubview:avatarView];
-        
-        MMProfilePhotoCheckBox *check = [[MMProfilePhotoCheckBox alloc] initWithType:CheckBoxTypeGreen
-                                                                            andFrame:CGRectMake(avatarView.center.x,
-                                                                                                avatarView.center.y,
-                                                                                                20, 20)];
-        [self.view addSubview:check];
->>>>>>> Profile picture checkbox.
     }
     
     UIButton *focusButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -600,8 +734,6 @@
         case UIGestureRecognizerStateRecognized: {
             NSInteger tappedDotIndex = gesture.view.tag;
             MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
-            
-            [_noiseBG setHidden:!_noiseBG.hidden];
             
             tappedDot.selected = !tappedDot.isSelected;
             
