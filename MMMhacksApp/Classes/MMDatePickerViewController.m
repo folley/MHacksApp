@@ -32,6 +32,9 @@
 @property (nonatomic, weak) MMNodeDot *_expandedNodeDot;
 
 @property (nonatomic, strong) MMPerson *_myPerson;
+
+@property (nonatomic, strong) NSMutableArray *_otherShitViews;
+
 @end
 
 @implementation MMDatePickerViewController
@@ -78,6 +81,7 @@
     __nodeDotViews = [[NSMutableArray alloc] init];
     __nodesConnectionLines = [[NSMutableArray alloc] init];
     __currentlyPresentedAvatars = [[NSMutableArray alloc] init];
+    __otherShitViews = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
     
     // People
@@ -158,7 +162,7 @@
 
 - (void)_focusOnBest
 {
-    [self _choseNodeAndExplode:nil];
+    [self _choseNodeAndExplode:self._nodeDotViews[4]];
 }
 
 - (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
@@ -176,7 +180,8 @@
         for (NSInteger i=0; i<5; i++) {
             UIView *particle = [[UIView alloc] init];
             particle.frame = CGRectMake(0, 0, 10, 10);
-            particle.center = [node convertPoint:node.center toView:self.view.superview];
+            particle.center = [node.superview convertPoint:node.center
+                                                    toView:self.view];
             particle.backgroundColor = [UIColor darkGrayColor];
             particle.layer.cornerRadius = particle.frame.size.width/2.f;
             particle.clipsToBounds = YES;
@@ -187,8 +192,8 @@
             // Push
             UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[particle]
                                                                     mode:UIPushBehaviorModeInstantaneous];
-            CGFloat randomX = 1. / (rand() % 200 + 1);
-            CGFloat randomY = 1. / (rand() % 200 + 1);
+            CGFloat randomX = 1. / (rand() % 200 + 100);
+            CGFloat randomY = 1. / (rand() % 200 + 100);
             NSInteger randomSignX = rand() % 2 == 0 ? 1 : -1;
             NSInteger randomSignY = rand() % 2 == 0 ? 1 : -1;
             push.pushDirection = CGVectorMake(randomX * randomSignX,
@@ -203,16 +208,45 @@
                 node.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
             }];
         }
-    
-//        [particles addObject:node];
     }
-//    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:particles];
-//    [self._nodesAnimator addBehavior:gravity];
     
-    // Hide lines
-    for (UIView *view in self._nodesConnectionLines) {
-        view.alpha = 0.f;
-    }
+    [UIView animateWithDuration:0.5 animations:^{
+        for (UIView *view in self._nodesConnectionLines) {
+            view.alpha = 0.f;
+        }
+        
+        for (UIView *view in self._dateDotViews) {
+            view.alpha = 0.f;
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+        }
+        
+        for (UIView *view in self._otherShitViews) {
+            view.alpha = 0.f;
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+        }
+    }];
+    
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        selectedNode.center = CGPointMake(self.view.frame.size.height/2.f,
+                                          self.view.frame.size.width/2.f);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.7 animations:^{
+            selectedNode._dotView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+            selectedNode._dotView.backgroundColor = [UIColor greenColor];
+        } completion:^(BOOL finished) {
+
+            UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [confirmButton setTitle:@"Send confirmation" forState:UIControlStateNormal];
+            [confirmButton sizeToFit];
+            [confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+            confirmButton.center = CGPointMake(self.view.frame.size.height/2.f,
+                                               self.view.frame.size.width/2.f + 60);
+            [confirmButton addTarget:self action:@selector(_sendConfirmation) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:confirmButton];
+        }];
+    }];
 }
 
 - (void)_addPeopleAvatars
@@ -266,6 +300,7 @@
     // Connect Date dots with first node dots
     for (NSInteger i=0; i<DAYS; i++) {
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
+        [self._otherShitViews addObject:line];
         line.alpha = 0.f;
         [self.view insertSubview:line atIndex:1];
         
@@ -327,6 +362,7 @@
     NSInteger randomHour = 9;
     for (NSInteger i=0; i<HOURS; i++) {
         UILabel *hourLabel = [[UILabel alloc] init];
+        [self._otherShitViews addObject:hourLabel];
         hourLabel.font = [UIFont fontWithName:@"Raleway-Light" size:17.f];
         hourLabel.backgroundColor = [UIColor clearColor];
         hourLabel.textColor = [UIColor darkGrayColor];
@@ -350,6 +386,7 @@
         MMNodeDot *lastHourNode = self._nodeDotViews[DAYS*i + DAYS-1];
         
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
+        [self._otherShitViews addObject:line];
         line.type = MMLineHorizontal;
         line.alpha = 0.3f;
         [self.view insertSubview:line atIndex:1];

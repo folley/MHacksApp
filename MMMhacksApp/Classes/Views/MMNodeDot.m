@@ -10,7 +10,7 @@
 #import "MMStyleSheet.h"
 
 @interface MMNodeDot ()
-@property (nonatomic, strong) UIView *_dotView;
+//@property (nonatomic, strong) UIView *_dotView;
 @end
 
 @implementation MMNodeDot
@@ -50,6 +50,7 @@
         __dotView.backgroundColor = [[MMStyleSheet sharedInstance] mainGrayColor];
         __dotView.layer.cornerRadius = __dotView.frame.size.width/2.f;
         __dotView.userInteractionEnabled = NO;
+        __dotView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self addSubview:__dotView];
         
         self.backgroundColor = [UIColor clearColor];

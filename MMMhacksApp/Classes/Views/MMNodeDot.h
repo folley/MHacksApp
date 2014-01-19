@@ -13,4 +13,6 @@
 @property (nonatomic, getter = isSelected) BOOL selected;
 @property (nonatomic, strong) NSArray *connectedNodes;
 
+@property (nonatomic, strong) UIView *_dotView;
+
 @end
