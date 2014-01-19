@@ -36,6 +36,8 @@
 @property (nonatomic, strong) UIView *noiseBG;
 @property (nonatomic, strong) NSMutableArray *_avatars;
 
+@property BOOL focusFinished;
+
 @end
 
 @implementation MMDatePickerViewController
@@ -93,6 +95,7 @@ int tab[7][7];
     }
     
     [self.view addSubview:_noiseBG];
+    self.focusFinished = NO;
     
     __nodeDotViews = [[NSMutableArray alloc] init];
     __nodesConnectionLines = [[NSMutableArray alloc] init];
@@ -296,16 +299,13 @@ int tab[7][7];
     
     
     [UIView animateWithDuration:1.0 animations:^{
-        selectedNode.center = CGPointMake(self.view.frame.size.height/2.f,
-                                          self.view.frame.size.width/2.f);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.7 animations:^{
-            selectedNode._dotView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-            selectedNode._dotView.backgroundColor = [UIColor greenColor];
+            for (MMNodeDot *dot in chosenNodes) {
+                dot._dotView.backgroundColor = [[MMStyleSheet sharedInstance] greenColor];
+            }
         } completion:^(BOOL finished) {
             
             UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [confirmButton setTitle:@"Send confirmation" forState:UIControlStateNormal];
+            [confirmButton setTitle:@"tap on green button to send confirmation" forState:UIControlStateNormal];
             [confirmButton sizeToFit];
             [confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
@@ -313,9 +313,8 @@ int tab[7][7];
                                                self.view.frame.size.width/2.f + 60);
             [confirmButton addTarget:self action:@selector(_sendConfirmation) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:confirmButton];
-        }];
+            self.focusFinished = YES;
     }];
-
 }
 
 - (void)_addPeopleAvatars
@@ -666,13 +665,19 @@ int tab[7][7];
 {
     switch (gesture.state) {
         case UIGestureRecognizerStateRecognized: {
+            
             NSInteger tappedDotIndex = gesture.view.tag;
             MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
+            
+            if (self.focusFinished == YES) {
+                [self performSelector:@selector(_sendConfirmation) withObject:Nil afterDelay:0];
+
+                break;
+            }
             
             tappedDot.selected = !tappedDot.isSelected;
             
             [self _updateRankedHoursWithNodeDot:tappedDot];
-            
             [self _updateConnectionLines];
         }
             break;
