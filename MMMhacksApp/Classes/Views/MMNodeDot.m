@@ -21,7 +21,7 @@
 {
     BOOL togglingToActive = selected && !_selected;
 
-    UIColor *toFadeColor = togglingToActive ? [UIColor blackColor] : [[MMStyleSheet sharedInstance] mainGrayColor];
+    UIColor *toFadeColor = togglingToActive ? [[MMStyleSheet sharedInstance] mainDarkGrayColor] : [[MMStyleSheet sharedInstance] mainGrayColor];
     
     UIView *animatedDot = [[UIView alloc] initWithFrame:self._dotView.frame];
     animatedDot.layer.cornerRadius = self._dotView.layer.cornerRadius;

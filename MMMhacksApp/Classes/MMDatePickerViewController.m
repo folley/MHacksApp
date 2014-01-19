@@ -13,6 +13,7 @@
 #import "MMStyleSheet.h"
 #import <MessageUI/MessageUI.h>
 #import "UIView+JMNoise.h"
+#import "MMProfilePhotoCheckBox.h"
 
 #define DAYS 5
 #define HOURS 5
@@ -33,11 +34,9 @@
 @property (nonatomic, strong) MMPerson *_myPerson;
 
 @property (nonatomic, strong) NSMutableArray *_otherShitViews;
-
 @property (nonatomic, strong) NSMutableArray *_avatars;
-
+@property (nonatomic, strong) UIView *noiseBG;
 @end
-
 @implementation MMDatePickerViewController
 
 - (instancetype)initWithMainPerson:(MMPerson *)myPerson people:(NSArray *)people
@@ -49,22 +48,48 @@
     return self;
 }
 
+- (void)_loadPeopleData
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"MMPerson"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"downloaded");
+        if (!error) {
+            NSMutableArray *allPeople = [[NSMutableArray alloc] initWithCapacity:5];
+            for (PFObject *parseObject in objects) {
+                MMPerson *person = [[MMPerson alloc] initWithParseObject:parseObject];
+                [allPeople addObject:person];
+                
+                if ([[person.parseObject objectId] isEqualToString:@"MAqQNyRsJj"]) {
+                    self._myPerson = person;
+                }
+            }
+            self._people = [allPeople mutableCopy];
+            [self _fillPeopleWithData];
+            NSLog(@"adding avatars");
+            [self _addPeopleAvatars];
+            
+            [self _configureNodesAppearance];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    UIView *noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
-    noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
-    [noiseBG applyNoise];
+    _noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
+    _noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
+    [_noiseBG applyNoise];
     
-    [self.view addSubview:noiseBG];
+    [self.view addSubview:_noiseBG];
     
     __nodeDotViews = [[NSMutableArray alloc] init];
     __nodesConnectionLines = [[NSMutableArray alloc] init];
     __currentlyPresentedAvatars = [[NSMutableArray alloc] init];
-    __otherShitViews = [[NSMutableArray alloc] init];
+ __otherShitViews = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
     
     // People
@@ -581,17 +606,10 @@
 {
     switch (gesture.state) {
         case UIGestureRecognizerStateRecognized: {
-            
-            int rand = arc4random()%2;
-            if (rand%2) {
-                self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
-            }
-            else {
-                self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainDarkGrayColor];
-            }
-            
             NSInteger tappedDotIndex = gesture.view.tag;
             MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
+            
+            [_noiseBG setHidden:!_noiseBG.hidden];
             
             tappedDot.selected = !tappedDot.isSelected;
             

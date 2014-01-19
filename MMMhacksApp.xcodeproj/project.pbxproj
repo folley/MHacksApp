@@ -42,6 +42,7 @@
 		E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */; };
 		E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */; };
 		E6DECE90188B83EE000B8DFA /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */; };
+		E6DECE93188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		E6DECE8E188B83EE000B8DFA /* UIView+JMNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMNoise.h"; sourceTree = "<group>"; };
 		E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
+		E6DECE91188B8E4C000B8DFA /* MMProfilePhotoCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProfilePhotoCheckBox.h; sourceTree = "<group>"; };
+		E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProfilePhotoCheckBox.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 				9069677A188AA6AF00BD978B /* MMDateDot.m */,
 				9069677C188AB40E00BD978B /* MMConnectionLine.h */,
 				9069677D188AB40E00BD978B /* MMConnectionLine.m */,
+				E6DECE91188B8E4C000B8DFA /* MMProfilePhotoCheckBox.h */,
+				E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90696777188A97FA00BD978B /* MMNodeDot.m in Sources */,
+				E6DECE93188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m in Sources */,
 				90696784188AEF1000BD978B /* MMPerson.m in Sources */,
 				90696772188A979300BD978B /* MMDatePickerViewController.m in Sources */,
 				E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */,
