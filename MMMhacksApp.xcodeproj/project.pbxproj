@@ -43,6 +43,14 @@
 		E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */; };
 		E6DECE90188B83EE000B8DFA /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */; };
 		E6DECE93188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */; };
+		E6DECE9F188BFDD8000B8DFA /* 0043_cash_register_5.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE97188BFDD8000B8DFA /* 0043_cash_register_5.wav */; };
+		E6DECEA0188BFDD8000B8DFA /* 0013_music_theme_05.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE98188BFDD8000B8DFA /* 0013_music_theme_05.wav */; };
+		E6DECEA1188BFDD8000B8DFA /* rzut.aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE99188BFDD8000B8DFA /* rzut.aifc */; };
+		E6DECEA2188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9A188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav */; };
+		E6DECEA3188BFDD8000B8DFA /* 0013_mission_complete_09.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9B188BFDD8000B8DFA /* 0013_mission_complete_09.wav */; };
+		E6DECEA4188BFDD8000B8DFA /* rzut(stary).aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9C188BFDD8000B8DFA /* rzut(stary).aifc */; };
+		E6DECEA5188BFDD8000B8DFA /* skok(stary).aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9D188BFDD8000B8DFA /* skok(stary).aifc */; };
+		E6DECEA6188BFDD8000B8DFA /* dziecko.aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9E188BFDD8000B8DFA /* dziecko.aifc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +114,14 @@
 		E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
 		E6DECE91188B8E4C000B8DFA /* MMProfilePhotoCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProfilePhotoCheckBox.h; sourceTree = "<group>"; };
 		E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProfilePhotoCheckBox.m; sourceTree = "<group>"; };
+		E6DECE97188BFDD8000B8DFA /* 0043_cash_register_5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0043_cash_register_5.wav; sourceTree = "<group>"; };
+		E6DECE98188BFDD8000B8DFA /* 0013_music_theme_05.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0013_music_theme_05.wav; sourceTree = "<group>"; };
+		E6DECE99188BFDD8000B8DFA /* rzut.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = rzut.aifc; sourceTree = "<group>"; };
+		E6DECE9A188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0024_clock_loops_fastest_01.wav; sourceTree = "<group>"; };
+		E6DECE9B188BFDD8000B8DFA /* 0013_mission_complete_09.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0013_mission_complete_09.wav; sourceTree = "<group>"; };
+		E6DECE9C188BFDD8000B8DFA /* rzut(stary).aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rzut(stary).aifc"; sourceTree = "<group>"; };
+		E6DECE9D188BFDD8000B8DFA /* skok(stary).aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "skok(stary).aifc"; sourceTree = "<group>"; };
+		E6DECE9E188BFDD8000B8DFA /* dziecko.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = dziecko.aifc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +257,14 @@
 		E64252DF188A7F1600549CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E6DECE97188BFDD8000B8DFA /* 0043_cash_register_5.wav */,
+				E6DECE98188BFDD8000B8DFA /* 0013_music_theme_05.wav */,
+				E6DECE99188BFDD8000B8DFA /* rzut.aifc */,
+				E6DECE9A188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav */,
+				E6DECE9B188BFDD8000B8DFA /* 0013_mission_complete_09.wav */,
+				E6DECE9C188BFDD8000B8DFA /* rzut(stary).aifc */,
+				E6DECE9D188BFDD8000B8DFA /* skok(stary).aifc */,
+				E6DECE9E188BFDD8000B8DFA /* dziecko.aifc */,
 				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
 				E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */,
 				E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */,
@@ -360,10 +384,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
+				E6DECEA2188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav in Resources */,
+				E6DECE9F188BFDD8000B8DFA /* 0043_cash_register_5.wav in Resources */,
 				E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */,
 				E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */,
+				E6DECEA5188BFDD8000B8DFA /* skok(stary).aifc in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
+				E6DECEA0188BFDD8000B8DFA /* 0013_music_theme_05.wav in Resources */,
+				E6DECEA3188BFDD8000B8DFA /* 0013_mission_complete_09.wav in Resources */,
 				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
+				E6DECEA4188BFDD8000B8DFA /* rzut(stary).aifc in Resources */,
+				E6DECEA1188BFDD8000B8DFA /* rzut.aifc in Resources */,
+				E6DECEA6188BFDD8000B8DFA /* dziecko.aifc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
