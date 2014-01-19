@@ -10,7 +10,6 @@
 #import "MMNodeDot.h"
 #import "MMDateDot.h"
 #import "MMConnectionLine.h"
-#import "MMPerson.h"
 #import "MMStyleSheet.h"
 #import <MessageUI/MessageUI.h>
 #import "UIView+JMNoise.h"
@@ -35,35 +34,19 @@
 
 @property (nonatomic, strong) NSMutableArray *_otherShitViews;
 
+@property (nonatomic, strong) NSMutableArray *_avatars;
+
 @end
 
 @implementation MMDatePickerViewController
 
-- (void)_loadPeopleData
+- (instancetype)initWithMainPerson:(MMPerson *)myPerson people:(NSArray *)people
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"MMPerson"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"downloaded");
-        if (!error) {
-            NSMutableArray *allPeople = [[NSMutableArray alloc] initWithCapacity:5];
-            for (PFObject *parseObject in objects) {
-                MMPerson *person = [[MMPerson alloc] initWithParseObject:parseObject];
-                [allPeople addObject:person];
-                
-                if ([[person.parseObject objectId] isEqualToString:@"MAqQNyRsJj"]) {
-                    self._myPerson = person;
-                }
-            }
-            self._people = [allPeople mutableCopy];
-            [self _fillPeopleWithData];
-            NSLog(@"adding avatars");
-            [self _addPeopleAvatars];
-            
-            [self _configureNodesAppearance];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    if (self = [super init]) {
+        self._myPerson = myPerson;
+        self._people = people;
+    }
+    return self;
 }
 
 #pragma mark - Lifecycle
@@ -85,7 +68,7 @@
     self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
     
     // People
-    [self _loadPeopleData];
+    [self _addPeopleAvatars];
 
     //
     for (NSInteger i=0; i< DAYS * HOURS; i++) {
@@ -106,7 +89,7 @@
         dateDot.dateLabel.text = [NSString stringWithFormat:@"%i", 15 + i];
         dateDot.dayLabel.text = [((NSString *)[weekdaysNames objectAtIndex:i]).uppercaseString substringToIndex:3];
         dateDot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
-        dateDot.center = CGPointMake(240 + 140 * dotDay, 100);
+        dateDot.center = CGPointMake(240 + 140 * dotDay, 130);
         [dateDots addObject:dateDot];
         [self.view addSubview:dateDot];
     }
@@ -156,6 +139,7 @@
     [self performSelector:@selector(_connectDots) withObject:nil afterDelay:2.2];
     [self performSelector:@selector(_addHoursLables) withObject:nil afterDelay:2.0];
     [self performSelector:@selector(_addHorizontalLines) withObject:nil afterDelay:2.0];
+    [self _configureNodesAppearance];
 }
 
 #pragma mark - MMDatePickerViewController ()
@@ -251,22 +235,38 @@
 
 - (void)_addPeopleAvatars
 {
-    UIView *sidebarBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-100, 0,
-                                                                 100, self.view.frame.size.height)];
+    if (!self._avatars) {
+        self._avatars = [[NSMutableArray alloc] init];
+    }
+
+    UIView *sidebarBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-100,
+                                                                 0,
+                                                                 100,
+                                                                 self.view.frame.size.height)];
+    sidebarBg.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     sidebarBg.backgroundColor = [UIColor colorWithWhite:1. alpha:.8];
     [self.view addSubview:sidebarBg];
     
     for (NSInteger i=0; i<[self._people count]; i++) {
         MMPerson *person = self._people[i];
         UIImageView *avatarView = [[UIImageView alloc] initWithImage:person.avatarImage];
+        [self._avatars addObject:avatarView];
         avatarView.frame = CGRectMake(0, 0, 45, 45);
         avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
         avatarView.clipsToBounds = YES;
-        avatarView.center = CGPointMake(self.view.bounds.size.width - 50,
+        avatarView.center = CGPointMake(sidebarBg.bounds.size.width - 50,
                                         200 + 100*i);
-        [self.view addSubview:avatarView];
+        avatarView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [sidebarBg addSubview:avatarView];
+        
+        // tap gesture
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = avatarView.frame;
+        btn.backgroundColor = [UIColor clearColor];
+        [sidebarBg addSubview:btn];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(_switchUser:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
     
     UIButton *focusButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [focusButton setTitle:@"FOCUS" forState:UIControlStateNormal];
@@ -280,6 +280,37 @@
                                    200);
     focusButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     [sidebarBg addSubview:focusButton];
+    
+    [self _configureAvatarAppearance];
+}
+
+- (void)_switchUser:(UIButton *)sender
+{
+    
+    MMDatePickerViewController *pickerVC = [[MMDatePickerViewController alloc] initWithMainPerson:self._people[sender.tag]
+                                                                                           people:self._people];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerVC animated:YES completion:nil];
+    }];
+}
+
+- (void)_configureAvatarAppearance
+{
+    for (NSInteger i=0; i<[self._people count]; i++) {
+        MMPerson *person = self._people[i];
+        
+        BOOL alreadyVoted = NO;
+        for (NSArray *array in person.rankedHours) {
+            if ([array count] != 0) {
+                alreadyVoted = YES;
+                break;
+            }
+        }
+
+        if (!alreadyVoted) {
+            [self._avatars[i] setAlpha:0.5];
+        }
+    }
 }
 
 - (void)_showDaysDots
@@ -344,7 +375,7 @@
         NSInteger dotHour = i / DAYS;
         
         CGPoint dotCenter = CGPointMake(240 + 140 * dotDay,
-                                        200 + 100 * dotHour);
+                                        230 + 100 * dotHour);
         UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:dot
                                                         snapToPoint:dotCenter];
         snap.damping = 0.8f;
@@ -372,9 +403,16 @@
         
         MMNodeDot *firstHourNode = self._nodeDotViews[DAYS*i];
         
+        
+        
+        
+        
+        
+        
+        
+        
         hourLabel.center = CGPointMake(firstHourNode.center.x - 150,
                                        firstHourNode.center.y);
-        
         randomHour++;
     }
 }
@@ -445,47 +483,6 @@
     }
 }
 
-
-- (void)_fillPeopleWithData
-{
-//    NSArray *p1 = @[@[@0, @1, @2, @3, @4],
-//                    @[@0, @2, @3, @4],
-//                    @[@0, @1, @3, @4],
-//                    @[@2, @3, @4],
-//                    @[@4]];
-//    NSArray *p2 = @[@[@2, @3, @4],
-//                    @[@0, @1, @4],
-//                    @[@0, @3, @4],
-//                    @[@0],
-//                    @[@0, @3, @4]];
-//    NSArray *p3 = @[@[@0, @2, @3],
-//                    @[@0, @1, @2, @4],
-//                    @[@0, @1, @2, @3, @4],
-//                    @[@0, @1, @4],
-//                    @[@2, @3, @4]];
-//    NSArray *p4 = @[@[@1, @2, @3],
-//                    @[@0, @1, @3, @4],
-//                    @[@2, @3, @4],
-//                    @[@0, @2, @3],
-//                    @[@3]];
-//    NSArray *p5 = @[@[@4],
-//                    @[@2, @3, @4],
-//                    @[@0, @2, @3, @4],
-//                    @[@0, @4],
-//                    @[@0, @1, @3, @4]];
-//    NSArray *data = @[p1, p2, p3, p4, p5];
-//    
-//    for (NSInteger i=0; i<[self._people count]; i++) {
-//        MMPerson *person = self._people[i];
-//        
-//        person.parseObject[@"rankedHours"] = data[i];
-//        [person.parseObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            NSLog(@"SAVED ! %i", succeeded);
-//        }];
-//        
-//        person.rankedHours = data[i];
-//    }
-}
 
 - (void)_showVotersFromNode:(MMNodeDot *)node
 {

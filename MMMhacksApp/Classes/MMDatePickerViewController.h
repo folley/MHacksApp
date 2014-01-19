@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MMPerson.h"
 
 @interface MMDatePickerViewController : UIViewController
+
+- (instancetype)initWithMainPerson:(MMPerson *)myPerson people:(NSArray *)people;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MMAppDelegate.h"
-#import "MMDatePickerViewController.h"
+#import "MMLoaderViewController.h"
 #import <Parse/Parse.h>
 
 @interface MMAppDelegate ()
@@ -22,7 +22,7 @@
                   clientKey:@"E71tKfOKzJZg2QvCfZopKCc1qaTBGd5odTE3iYkz"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UIViewController *vc = [MMDatePickerViewController new];
+    UIViewController *vc = [MMLoaderViewController new];
     
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];

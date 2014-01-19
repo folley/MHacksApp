@@ -24,6 +24,7 @@
 		90747008188B42DB00CCB3DB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747007188B42DB00CCB3DB /* StoreKit.framework */; };
 		9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747009188B42E200CCB3DB /* SystemConfiguration.framework */; };
 		9074700C188B71F300CCB3DB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9074700B188B71F300CCB3DB /* MessageUI.framework */; };
+		9074700F188BA4DE00CCB3DB /* MMLoaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9074700E188BA4DE00CCB3DB /* MMLoaderViewController.m */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -77,6 +78,8 @@
 		90747007188B42DB00CCB3DB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		90747009188B42E200CCB3DB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9074700B188B71F300CCB3DB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9074700D188BA4DE00CCB3DB /* MMLoaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMLoaderViewController.h; path = Classes/MMLoaderViewController.h; sourceTree = "<group>"; };
+		9074700E188BA4DE00CCB3DB /* MMLoaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMLoaderViewController.m; path = Classes/MMLoaderViewController.m; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,8 @@
 				E64252F1188A7F1600549CAF /* MMViewController.m */,
 				90696770188A979300BD978B /* MMDatePickerViewController.h */,
 				90696771188A979300BD978B /* MMDatePickerViewController.m */,
+				9074700D188BA4DE00CCB3DB /* MMLoaderViewController.h */,
+				9074700E188BA4DE00CCB3DB /* MMLoaderViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 				E64252E9188A7F1600549CAF /* MMAppDelegate.m in Sources */,
 				9069677E188AB40E00BD978B /* MMConnectionLine.m in Sources */,
 				9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */,
+				9074700F188BA4DE00CCB3DB /* MMLoaderViewController.m in Sources */,
 				90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */,
 				E64252F2188A7F1600549CAF /* MMViewController.m in Sources */,
 				E6DECE90188B83EE000B8DFA /* UIView+JMNoise.m in Sources */,
