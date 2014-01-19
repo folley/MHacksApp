@@ -13,11 +13,6 @@
 		9069677E188AB40E00BD978B /* MMConnectionLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9069677D188AB40E00BD978B /* MMConnectionLine.m */; };
 		90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696780188ABAD600BD978B /* MMStyleSheet.m */; };
 		90696784188AEF1000BD978B /* MMPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 90696783188AEF1000BD978B /* MMPerson.m */; };
-		90696786188AF05900BD978B /* michalAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696785188AF05900BD978B /* michalAvatar@2x.png */; };
-		9069678B188B2ABA00BD978B /* basia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696787188B2ABA00BD978B /* basia@2x.png */; };
-		9069678C188B2ABA00BD978B /* dave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696788188B2ABA00BD978B /* dave@2x.png */; };
-		9069678D188B2ABA00BD978B /* maciek@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90696789188B2ABA00BD978B /* maciek@2x.png */; };
-		9069678E188B2ABA00BD978B /* raf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9069678A188B2ABA00BD978B /* raf@2x.png */; };
 		90746FF8188B428C00CCB3DB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FF7188B428C00CCB3DB /* Parse.framework */; };
 		90746FFA188B42AB00CCB3DB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FF9188B42AB00CCB3DB /* AudioToolbox.framework */; };
 		90746FFC188B42B100CCB3DB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90746FFB188B42B100CCB3DB /* CFNetwork.framework */; };
@@ -69,11 +64,6 @@
 		90696780188ABAD600BD978B /* MMStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMStyleSheet.m; path = Classes/MMStyleSheet.m; sourceTree = "<group>"; };
 		90696782188AEF1000BD978B /* MMPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMPerson.h; path = Classes/MMPerson.h; sourceTree = "<group>"; };
 		90696783188AEF1000BD978B /* MMPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMPerson.m; path = Classes/MMPerson.m; sourceTree = "<group>"; };
-		90696785188AF05900BD978B /* michalAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "michalAvatar@2x.png"; path = "Images/michalAvatar@2x.png"; sourceTree = "<group>"; };
-		90696787188B2ABA00BD978B /* basia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "basia@2x.png"; path = "Images/basia@2x.png"; sourceTree = "<group>"; };
-		90696788188B2ABA00BD978B /* dave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dave@2x.png"; path = "Images/dave@2x.png"; sourceTree = "<group>"; };
-		90696789188B2ABA00BD978B /* maciek@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maciek@2x.png"; path = "Images/maciek@2x.png"; sourceTree = "<group>"; };
-		9069678A188B2ABA00BD978B /* raf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "raf@2x.png"; path = "Images/raf@2x.png"; sourceTree = "<group>"; };
 		90746FF7188B428C00CCB3DB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = MMMhacksApp/Parse.framework; sourceTree = "<group>"; };
 		90746FF9188B42AB00CCB3DB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		90746FFB188B42B100CCB3DB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -233,11 +223,6 @@
 		E64252DF188A7F1600549CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90696787188B2ABA00BD978B /* basia@2x.png */,
-				90696788188B2ABA00BD978B /* dave@2x.png */,
-				90696789188B2ABA00BD978B /* maciek@2x.png */,
-				9069678A188B2ABA00BD978B /* raf@2x.png */,
-				90696785188AF05900BD978B /* michalAvatar@2x.png */,
 				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
 				E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */,
 				E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */,
@@ -347,16 +332,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9069678E188B2ABA00BD978B /* raf@2x.png in Resources */,
-				9069678C188B2ABA00BD978B /* dave@2x.png in Resources */,
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
 				E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */,
-				9069678D188B2ABA00BD978B /* maciek@2x.png in Resources */,
 				E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
 				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
-				90696786188AF05900BD978B /* michalAvatar@2x.png in Resources */,
-				9069678B188B2ABA00BD978B /* basia@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

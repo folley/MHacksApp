@@ -8,12 +8,21 @@
 
 #import "MMPerson.h"
 
+@interface MMPerson ()
+@property (nonatomic, strong, readwrite) PFObject *parseObject;
+@end
+
 @implementation MMPerson
 
-- (instancetype)init
+- (instancetype)initWithParseObject:(PFObject *)parseObject
 {
     if (self = [super init]) {
-
+        self.parseObject = parseObject;
+        
+        NSData *fileData = [parseObject[@"avatarImage"] getData];
+        self.avatarImage = [UIImage imageWithData:fileData];
+        
+        self.rankedHours = parseObject[@"rankedHours"];
     }
     return self;
 }

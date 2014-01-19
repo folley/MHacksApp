@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface MMPerson : NSObject
+
+- (instancetype)initWithParseObject:(PFObject *)parseObject;
+
+@property (nonatomic, strong, readonly) PFObject *parseObject;
 
 @property (nonatomic, strong) UIImage *avatarImage;
 /**
@@ -16,6 +21,6 @@
  @{<day> : @[0, 1, 2, ..],
    <day2> : @[..........]}
  */
-@property (nonatomic, strong) NSDictionary *rankedHours;
+@property (nonatomic, strong) NSArray *rankedHours;
 
 @end
