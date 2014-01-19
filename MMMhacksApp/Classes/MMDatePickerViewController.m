@@ -84,6 +84,7 @@ int tab[7][7];
 {
     [super viewDidLoad];
     
+    [self _addRestButton];
     _noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
     _noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
     [_noiseBG applyNoise];
@@ -212,7 +213,7 @@ int tab[7][7];
     
     for (NSInteger j=0; j<HOURS; j++) {
         for (NSInteger i=0; i<DAYS; i++) {
-            if (tab[i][j] > max) {
+            if (tab[i][j] >= max) {
                 NSInteger nodeDotIndex = i + DAYS*j;
                 [targets addObject:self._nodeDotViews[nodeDotIndex]];
             }
@@ -647,6 +648,28 @@ int tab[7][7];
     [mailComposer setToRecipients:mails];
     
     [self presentViewController:mailComposer animated:YES completion:nil];
+}
+
+
+- (void)resetData:(id)sender
+{
+    for (MMPerson *person in self._people) {
+        person.rankedHours = nil;
+    }
+}
+
+- (void)_addRestButton
+{
+    UIButton *xButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    
+    [xButton setTitle:@"X" forState:UIControlStateNormal];
+    [xButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [xButton addTarget:self
+                action:@selector(resetData:)
+      forControlEvents:UIControlStateSelected];
+    
+    
+    [self.view addSubview:xButton];
 }
 
 #pragma mark - Gesture Handlers
