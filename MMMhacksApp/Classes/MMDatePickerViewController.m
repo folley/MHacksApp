@@ -200,9 +200,19 @@ int tab[7][7];
     
     NSMutableArray *targets = [NSMutableArray new];
     
+    int max = 0;
+    
     for (NSInteger j=0; j<HOURS; j++) {
         for (NSInteger i=0; i<DAYS; i++) {
-            if (tab[i][j] > 4) {
+            if (tab[i][j] > max) {
+                max = tab[i][j];
+            }
+        }
+    }
+    
+    for (NSInteger j=0; j<HOURS; j++) {
+        for (NSInteger i=0; i<DAYS; i++) {
+            if (tab[i][j] > max) {
                 NSInteger nodeDotIndex = i + DAYS*j;
                 [targets addObject:self._nodeDotViews[nodeDotIndex]];
             }
