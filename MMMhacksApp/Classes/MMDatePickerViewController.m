@@ -84,7 +84,6 @@ int tab[7][7];
 {
     [super viewDidLoad];
     
-    [self _addRestButton];
     _noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
     _noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
     [_noiseBG applyNoise];
@@ -165,6 +164,9 @@ int tab[7][7];
     // Set up animator
     self._nodesAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     self._avatarsAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    
+    [self _addRestButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -402,9 +404,21 @@ int tab[7][7];
             }
         }
 
-        if (!alreadyVoted) {
-            [self._avatars[i] setAlpha:0.5];
-        }
+        [UIView animateWithDuration:0.3 animations:^{
+            if (!alreadyVoted) {
+                [self._avatars[i] setAlpha:0.5];
+            }
+            else {
+                [self._avatars[i] setAlpha:1.f];
+            }
+            
+            if (person == self._myPerson) {
+                [(UIView *)self._avatars[i] setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5)];
+            }
+            else {
+                [(UIView *)self._avatars[i] setTransform:CGAffineTransformIdentity];
+            }
+        }];
     }
 }
 
@@ -654,9 +668,17 @@ int tab[7][7];
 - (void)resetData:(id)sender
 {
     for (MMPerson *person in self._people) {
-        person.rankedHours = nil;
+        person.rankedHours = @[@[], @[], @[], @[], @[]];
+        person.parseObject[@"rankedHours"] = person.rankedHours;
+        [person.parseObject saveInBackground];
     }
-}
+
+    
+    for (MMNodeDot *node in self._nodeDotViews) {
+        node.selected = NO;
+    }
+    [self _updateConnectionLines];
+}c
 
 - (void)_addRestButton
 {
@@ -666,7 +688,7 @@ int tab[7][7];
     [xButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [xButton addTarget:self
                 action:@selector(resetData:)
-      forControlEvents:UIControlStateSelected];
+      forControlEvents:UIControlEventTouchUpInside];
     
     
     [self.view addSubview:xButton];
@@ -678,7 +700,7 @@ int tab[7][7];
 {
     NSArray *rankedHours = self._myPerson.parseObject[@"rankedHours"];
     NSMutableArray *newRankedHours = [[NSMutableArray alloc] initWithArray:rankedHours];
-    NSMutableArray *hoursOfDay = newRankedHours[nodeDot.tag % DAYS];
+    NSMutableArray *hoursOfDay = [[NSMutableArray alloc] initWithArray:newRankedHours[nodeDot.tag % DAYS]];
     if (nodeDot.selected) {
         if (![hoursOfDay containsObject:@(nodeDot.tag / DAYS)]) {
             [hoursOfDay addObject:@(nodeDot.tag / DAYS)];
@@ -687,11 +709,14 @@ int tab[7][7];
     else {
         [hoursOfDay removeObject:@(nodeDot.tag / DAYS)];
     }
-    [newRankedHours replaceObjectAtIndex:(nodeDot.tag % DAYS) withObject:hoursOfDay];
+    [newRankedHours replaceObjectAtIndex:(nodeDot.tag % DAYS) withObject:[hoursOfDay mutableCopy]];
     
     self._myPerson.rankedHours = [newRankedHours mutableCopy];
     self._myPerson.parseObject[@"rankedHours"] = [newRankedHours mutableCopy];
     [self._myPerson.parseObject saveInBackground];
+    
+    //
+    [self _configureAvatarAppearance];
 }
 
 - (void)_handleTapGestureOnDot:(UITapGestureRecognizer *)gesture
