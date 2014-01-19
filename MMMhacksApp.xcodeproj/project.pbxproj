@@ -40,6 +40,7 @@
 		E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */; };
 		E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */; };
 		E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */; };
+		E6DECE90188B83EE000B8DFA /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		E6DECE8E188B83EE000B8DFA /* UIView+JMNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JMNoise.h"; sourceTree = "<group>"; };
+		E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,7 @@
 		90696774188A97E100BD978B /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				E6DECE8D188B83EE000B8DFA /* JMNoise */,
 				E64252E7188A7F1600549CAF /* MMAppDelegate.h */,
 				E64252E8188A7F1600549CAF /* MMAppDelegate.m */,
 				9069677F188ABAD600BD978B /* MMStyleSheet.h */,
@@ -254,6 +258,15 @@
 				E6425303188A7F1600549CAF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6DECE8D188B83EE000B8DFA /* JMNoise */ = {
+			isa = PBXGroup;
+			children = (
+				E6DECE8E188B83EE000B8DFA /* UIView+JMNoise.h */,
+				E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */,
+			);
+			path = JMNoise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +380,7 @@
 				9069677B188AA6AF00BD978B /* MMDateDot.m in Sources */,
 				90696781188ABAD600BD978B /* MMStyleSheet.m in Sources */,
 				E64252F2188A7F1600549CAF /* MMViewController.m in Sources */,
+				E6DECE90188B83EE000B8DFA /* UIView+JMNoise.m in Sources */,
 				E64252E5188A7F1600549CAF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

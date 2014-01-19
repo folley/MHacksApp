@@ -13,6 +13,7 @@
 #import "MMPerson.h"
 #import "MMStyleSheet.h"
 #import <MessageUI/MessageUI.h>
+#import "UIView+JMNoise.h"
 
 #define DAYS 5
 #define HOURS 5
@@ -68,11 +69,11 @@
 {
     [super viewDidLoad];
     
-//    UIView *noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
-//    noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
-//    [noiseBG applyNoise];
-//    
-//    [self.view addSubview:noiseBG];
+    UIView *noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
+    noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
+    [noiseBG applyNoise];
+    
+    [self.view addSubview:noiseBG];
     
     __nodeDotViews = [[NSMutableArray alloc] init];
     __nodesConnectionLines = [[NSMutableArray alloc] init];
@@ -113,7 +114,7 @@
         MMNodeDot *dot = __nodeDotViews[i];
         dot.center = [((MMDateDot *)dateDots[i % DAYS]) center];
         dot.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100, 1./100);
-        [self.view insertSubview:dot atIndex:0];
+        [self.view insertSubview:dot atIndex:1];
         
         
         // Double gesture
@@ -250,7 +251,7 @@
     for (NSInteger i=0; i<DAYS; i++) {
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
         line.alpha = 0.f;
-        [self.view insertSubview:line atIndex:0];
+        [self.view insertSubview:line atIndex:1];
         
         CGPoint dateDotAnchor = CGPointMake(((MMDateDot *)self._dateDotViews[i]).center.x,
                                             ((MMDateDot *)self._dateDotViews[i]).frame.origin.y +
@@ -262,7 +263,6 @@
         [UIView animateWithDuration:0.3 animations:^{
             line.alpha = 1.f;
         }];
-        
     }
 
     for (NSInteger j=0; j<HOURS-1; j++) {
@@ -273,7 +273,7 @@
             MMConnectionLine *line = [[MMConnectionLine alloc] init];
             line.alpha = 0.f;
             [self._nodesConnectionLines addObject:line];
-            [self.view insertSubview:line atIndex:0];
+            [self.view insertSubview:line atIndex:1];
             [line connectBetweenView:nodeDot secondView:nextNodeDot];
             
             [UIView animateWithDuration:0.3 animations:^{
@@ -336,7 +336,7 @@
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
         line.type = MMLineHorizontal;
         line.alpha = 0.1f;
-        [self.view insertSubview:line atIndex:0];
+        [self.view insertSubview:line atIndex:1];
         [line connectBetweenPoint:CGPointMake(firstHourNode.center.x - 100, firstHourNode.center.y)
                       secondPoint:CGPointMake(lastHourNode.center.x, lastHourNode.center.y)];
     }
@@ -532,7 +532,13 @@
     switch (gesture.state) {
         case UIGestureRecognizerStateRecognized: {
             
-            self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainDarkGrayColor];
+            int rand = arc4random()%2;
+            if (rand%2) {
+                self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
+            }
+            else {
+                self.view.backgroundColor = [[MMStyleSheet sharedInstance] mainDarkGrayColor];
+            }
             
             NSInteger tappedDotIndex = gesture.view.tag;
             MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
