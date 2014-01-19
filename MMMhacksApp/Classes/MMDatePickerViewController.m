@@ -12,11 +12,12 @@
 #import "MMConnectionLine.h"
 #import "MMPerson.h"
 #import "MMStyleSheet.h"
+#import <MessageUI/MessageUI.h>
 
 #define DAYS 5
 #define HOURS 5
 
-@interface MMDatePickerViewController ()
+@interface MMDatePickerViewController () <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) UIDynamicAnimator *_nodesAnimator;
 @property (nonatomic, strong) UIDynamicAnimator *_avatarsAnimator;
@@ -480,6 +481,22 @@
     }
 }
 
+- (void)_sendConfirmation
+{
+    MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    [mailComposer setSubject:@"Let's meet!"];
+    [mailComposer setMessageBody:@"Hey guys! We've just chosen the best time for our meeting!" isHTML:NO];
+    
+    NSMutableArray *mails = [[NSMutableArray alloc] init];
+    for (MMPerson *person in self._people) {
+        [mails addObject:person.parseObject[@"email"]];
+    }
+    [mailComposer setToRecipients:mails];
+    
+    [self presentViewController:mailComposer animated:YES completion:nil];
+}
+
 #pragma mark - Gesture Handlers
 
 - (void)_updateRankedHoursWithNodeDot:(MMNodeDot *)nodeDot
@@ -607,6 +624,13 @@
 {
     [super touchesBegan:touches withEvent:event];
     [self _dismissVisibleAvatars];
+}
+
+#pragma mark - <MFMailComposerViewControllerDelegate>
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

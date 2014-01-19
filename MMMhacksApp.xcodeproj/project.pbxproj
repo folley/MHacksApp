@@ -23,6 +23,7 @@
 		90747006188B42D500CCB3DB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747005188B42D500CCB3DB /* Security.framework */; };
 		90747008188B42DB00CCB3DB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747007188B42DB00CCB3DB /* StoreKit.framework */; };
 		9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747009188B42E200CCB3DB /* SystemConfiguration.framework */; };
+		9074700C188B71F300CCB3DB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9074700B188B71F300CCB3DB /* MessageUI.framework */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -74,6 +75,7 @@
 		90747005188B42D500CCB3DB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		90747007188B42DB00CCB3DB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		90747009188B42E200CCB3DB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9074700B188B71F300CCB3DB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9074700C188B71F300CCB3DB /* MessageUI.framework in Frameworks */,
 				9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */,
 				90747008188B42DB00CCB3DB /* StoreKit.framework in Frameworks */,
 				90747006188B42D500CCB3DB /* Security.framework in Frameworks */,
@@ -190,6 +193,7 @@
 		E64252D7188A7F1600549CAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9074700B188B71F300CCB3DB /* MessageUI.framework */,
 				90747009188B42E200CCB3DB /* SystemConfiguration.framework */,
 				90747007188B42DB00CCB3DB /* StoreKit.framework */,
 				90747005188B42D500CCB3DB /* Security.framework */,
