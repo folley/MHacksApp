@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSMutableArray *_currentlyPresentedAvatars;
 @property (nonatomic, weak) MMNodeDot *_expandedNodeDot;
+
+@property (nonatomic, strong) MMPerson *_myPerson;
 @end
 
 @implementation MMDatePickerViewController
@@ -42,11 +44,17 @@
             for (PFObject *parseObject in objects) {
                 MMPerson *person = [[MMPerson alloc] initWithParseObject:parseObject];
                 [allPeople addObject:person];
+                
+                if ([[person.parseObject objectId] isEqualToString:@"MAqQNyRsJj"]) {
+                    self._myPerson = person;
+                }
             }
             self._people = [allPeople mutableCopy];
             [self _fillPeopleWithData];
             NSLog(@"adding avatars");
             [self _addPeopleAvatars];
+            
+            [self _configureNodesAppearance];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
@@ -164,7 +172,6 @@
 - (void)_focusOnBest
 {
     [self _choseNodeAndExplode:nil];
-    NSLog(@"YEA");
 }
 
 - (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
@@ -463,7 +470,37 @@
     }
 }
 
+- (void)_configureNodesAppearance
+{
+    for (NSInteger day=0; day<[self._myPerson.rankedHours count]; day++) {
+        NSArray *dayHours = self._myPerson.rankedHours[day];
+        for (NSNumber *hourIndex in dayHours) {
+            ((MMNodeDot *)self._nodeDotViews[day + [hourIndex integerValue] * DAYS]).selected = YES;
+        }
+    }
+}
+
 #pragma mark - Gesture Handlers
+
+- (void)_updateRankedHoursWithNodeDot:(MMNodeDot *)nodeDot
+{
+    NSArray *rankedHours = self._myPerson.parseObject[@"rankedHours"];
+    NSMutableArray *newRankedHours = [[NSMutableArray alloc] initWithArray:rankedHours];
+    NSMutableArray *hoursOfDay = newRankedHours[nodeDot.tag % DAYS];
+    if (nodeDot.selected) {
+        if (![hoursOfDay containsObject:@(nodeDot.tag / DAYS)]) {
+            [hoursOfDay addObject:@(nodeDot.tag / DAYS)];
+        }
+    }
+    else {
+        [hoursOfDay removeObject:@(nodeDot.tag / DAYS)];
+    }
+    [newRankedHours replaceObjectAtIndex:(nodeDot.tag % DAYS) withObject:hoursOfDay];
+    
+    self._myPerson.rankedHours = [newRankedHours mutableCopy];
+    self._myPerson.parseObject[@"rankedHours"] = [newRankedHours mutableCopy];
+    [self._myPerson.parseObject saveInBackground];
+}
 
 - (void)_handleTapGestureOnDot:(UITapGestureRecognizer *)gesture
 {
@@ -476,6 +513,9 @@
             MMNodeDot *tappedDot = self._nodeDotViews[tappedDotIndex];
             
             tappedDot.selected = !tappedDot.isSelected;
+            
+            [self _updateRankedHoursWithNodeDot:tappedDot];
+            
             [self _updateConnectionLines];
         }
             break;
@@ -521,6 +561,7 @@
         case UIGestureRecognizerStateBegan: {
             MMNodeDot *dot = ((MMNodeDot *)gesture.view);
             dot.selected = !dot.isSelected;
+            [self _updateRankedHoursWithNodeDot:dot];
             // Disable for futher interaction
             dot.userInteractionEnabled = NO;
         }
@@ -533,7 +574,7 @@
                 if (CGRectContainsPoint(dot.frame, location)) {
                     // Make it selected
                     dot.selected = !dot.isSelected;
-                    
+                    [self _updateRankedHoursWithNodeDot:dot];
                     // Disable for futher interaction
                     dot.userInteractionEnabled = NO;
                     
