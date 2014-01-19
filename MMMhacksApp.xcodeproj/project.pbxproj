@@ -25,6 +25,11 @@
 		9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90747009188B42E200CCB3DB /* SystemConfiguration.framework */; };
 		9074700C188B71F300CCB3DB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9074700B188B71F300CCB3DB /* MessageUI.framework */; };
 		9074700F188BA4DE00CCB3DB /* MMLoaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9074700E188BA4DE00CCB3DB /* MMLoaderViewController.m */; };
+		90F67F1D188BFDB1005EF75E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F67F1C188BFDB1005EF75E /* MediaPlayer.framework */; };
+		90F67F1F188BFDC1005EF75E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F67F1E188BFDC1005EF75E /* AVFoundation.framework */; };
+		90F67F21188C0042005EF75E /* ping.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 90F67F20188BFFC4005EF75E /* ping.aifc */; };
+		90F67F23188C016A005EF75E /* 5.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 90F67F22188C016A005EF75E /* 5.aifc */; };
+		90F67F25188C0223005EF75E /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 90F67F24188C0223005EF75E /* 1.wav */; };
 		E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252D8188A7F1600549CAF /* Foundation.framework */; };
 		E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DA188A7F1600549CAF /* CoreGraphics.framework */; };
 		E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64252DC188A7F1600549CAF /* UIKit.framework */; };
@@ -43,14 +48,6 @@
 		E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */; };
 		E6DECE90188B83EE000B8DFA /* UIView+JMNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */; };
 		E6DECE93188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */; };
-		E6DECE9F188BFDD8000B8DFA /* 0043_cash_register_5.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE97188BFDD8000B8DFA /* 0043_cash_register_5.wav */; };
-		E6DECEA0188BFDD8000B8DFA /* 0013_music_theme_05.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE98188BFDD8000B8DFA /* 0013_music_theme_05.wav */; };
-		E6DECEA1188BFDD8000B8DFA /* rzut.aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE99188BFDD8000B8DFA /* rzut.aifc */; };
-		E6DECEA2188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9A188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav */; };
-		E6DECEA3188BFDD8000B8DFA /* 0013_mission_complete_09.wav in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9B188BFDD8000B8DFA /* 0013_mission_complete_09.wav */; };
-		E6DECEA4188BFDD8000B8DFA /* rzut(stary).aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9C188BFDD8000B8DFA /* rzut(stary).aifc */; };
-		E6DECEA5188BFDD8000B8DFA /* skok(stary).aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9D188BFDD8000B8DFA /* skok(stary).aifc */; };
-		E6DECEA6188BFDD8000B8DFA /* dziecko.aifc in Resources */ = {isa = PBXBuildFile; fileRef = E6DECE9E188BFDD8000B8DFA /* dziecko.aifc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +86,11 @@
 		9074700B188B71F300CCB3DB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9074700D188BA4DE00CCB3DB /* MMLoaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMLoaderViewController.h; path = Classes/MMLoaderViewController.h; sourceTree = "<group>"; };
 		9074700E188BA4DE00CCB3DB /* MMLoaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMLoaderViewController.m; path = Classes/MMLoaderViewController.m; sourceTree = "<group>"; };
+		90F67F1C188BFDB1005EF75E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		90F67F1E188BFDC1005EF75E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		90F67F20188BFFC4005EF75E /* ping.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = ping.aifc; sourceTree = "<group>"; };
+		90F67F22188C016A005EF75E /* 5.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = 5.aifc; sourceTree = "<group>"; };
+		90F67F24188C0223005EF75E /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		E64252D5188A7F1600549CAF /* MMMhacksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMMhacksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64252D8188A7F1600549CAF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E64252DA188A7F1600549CAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,14 +116,6 @@
 		E6DECE8F188B83EE000B8DFA /* UIView+JMNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JMNoise.m"; sourceTree = "<group>"; };
 		E6DECE91188B8E4C000B8DFA /* MMProfilePhotoCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMProfilePhotoCheckBox.h; sourceTree = "<group>"; };
 		E6DECE92188B8E4C000B8DFA /* MMProfilePhotoCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMProfilePhotoCheckBox.m; sourceTree = "<group>"; };
-		E6DECE97188BFDD8000B8DFA /* 0043_cash_register_5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0043_cash_register_5.wav; sourceTree = "<group>"; };
-		E6DECE98188BFDD8000B8DFA /* 0013_music_theme_05.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0013_music_theme_05.wav; sourceTree = "<group>"; };
-		E6DECE99188BFDD8000B8DFA /* rzut.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = rzut.aifc; sourceTree = "<group>"; };
-		E6DECE9A188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0024_clock_loops_fastest_01.wav; sourceTree = "<group>"; };
-		E6DECE9B188BFDD8000B8DFA /* 0013_mission_complete_09.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0013_mission_complete_09.wav; sourceTree = "<group>"; };
-		E6DECE9C188BFDD8000B8DFA /* rzut(stary).aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rzut(stary).aifc"; sourceTree = "<group>"; };
-		E6DECE9D188BFDD8000B8DFA /* skok(stary).aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "skok(stary).aifc"; sourceTree = "<group>"; };
-		E6DECE9E188BFDD8000B8DFA /* dziecko.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; path = dziecko.aifc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +123,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90F67F1F188BFDC1005EF75E /* AVFoundation.framework in Frameworks */,
+				90F67F1D188BFDB1005EF75E /* MediaPlayer.framework in Frameworks */,
+				90746FFA188B42AB00CCB3DB /* AudioToolbox.framework in Frameworks */,
 				9074700C188B71F300CCB3DB /* MessageUI.framework in Frameworks */,
 				9074700A188B42E200CCB3DB /* SystemConfiguration.framework in Frameworks */,
 				90747008188B42DB00CCB3DB /* StoreKit.framework in Frameworks */,
@@ -139,7 +136,6 @@
 				90746FFE188B42BC00CCB3DB /* CoreLocation.framework in Frameworks */,
 				E64252DB188A7F1600549CAF /* CoreGraphics.framework in Frameworks */,
 				90746FFC188B42B100CCB3DB /* CFNetwork.framework in Frameworks */,
-				90746FFA188B42AB00CCB3DB /* AudioToolbox.framework in Frameworks */,
 				E64252DD188A7F1600549CAF /* UIKit.framework in Frameworks */,
 				90746FF8188B428C00CCB3DB /* Parse.framework in Frameworks */,
 				E64252D9188A7F1600549CAF /* Foundation.framework in Frameworks */,
@@ -223,6 +219,8 @@
 		E64252D7188A7F1600549CAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90F67F1E188BFDC1005EF75E /* AVFoundation.framework */,
+				90F67F1C188BFDB1005EF75E /* MediaPlayer.framework */,
 				9074700B188B71F300CCB3DB /* MessageUI.framework */,
 				90747009188B42E200CCB3DB /* SystemConfiguration.framework */,
 				90747007188B42DB00CCB3DB /* StoreKit.framework */,
@@ -257,14 +255,9 @@
 		E64252DF188A7F1600549CAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E6DECE97188BFDD8000B8DFA /* 0043_cash_register_5.wav */,
-				E6DECE98188BFDD8000B8DFA /* 0013_music_theme_05.wav */,
-				E6DECE99188BFDD8000B8DFA /* rzut.aifc */,
-				E6DECE9A188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav */,
-				E6DECE9B188BFDD8000B8DFA /* 0013_mission_complete_09.wav */,
-				E6DECE9C188BFDD8000B8DFA /* rzut(stary).aifc */,
-				E6DECE9D188BFDD8000B8DFA /* skok(stary).aifc */,
-				E6DECE9E188BFDD8000B8DFA /* dziecko.aifc */,
+				90F67F20188BFFC4005EF75E /* ping.aifc */,
+				90F67F22188C016A005EF75E /* 5.aifc */,
+				90F67F24188C0223005EF75E /* 1.wav */,
 				E6DECE83188ADBF1000B8DFA /* Raleway-Medium.ttf */,
 				E6DECE87188AE28B000B8DFA /* fontawesome-webfont.ttf */,
 				E6DECE84188ADBF1000B8DFA /* Raleway-Light.ttf */,
@@ -352,7 +345,7 @@
 				ORGANIZATIONNAME = lobodzinski;
 				TargetAttributes = {
 					E64252D4188A7F1600549CAF = {
-						DevelopmentTeam = K923Y7RZ24;
+						DevelopmentTeam = 48ARUEM5RP;
 					};
 					E64252F8188A7F1600549CAF = {
 						TestTargetID = E64252D4188A7F1600549CAF;
@@ -384,18 +377,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E64252F4188A7F1600549CAF /* Images.xcassets in Resources */,
-				E6DECEA2188BFDD8000B8DFA /* 0024_clock_loops_fastest_01.wav in Resources */,
-				E6DECE9F188BFDD8000B8DFA /* 0043_cash_register_5.wav in Resources */,
 				E6DECE85188ADBF1000B8DFA /* Raleway-Medium.ttf in Resources */,
+				90F67F25188C0223005EF75E /* 1.wav in Resources */,
+				90F67F23188C016A005EF75E /* 5.aifc in Resources */,
+				90F67F21188C0042005EF75E /* ping.aifc in Resources */,
 				E6DECE88188AE28B000B8DFA /* fontawesome-webfont.ttf in Resources */,
-				E6DECEA5188BFDD8000B8DFA /* skok(stary).aifc in Resources */,
 				E64252E3188A7F1600549CAF /* InfoPlist.strings in Resources */,
-				E6DECEA0188BFDD8000B8DFA /* 0013_music_theme_05.wav in Resources */,
-				E6DECEA3188BFDD8000B8DFA /* 0013_mission_complete_09.wav in Resources */,
 				E6DECE86188ADBF1000B8DFA /* Raleway-Light.ttf in Resources */,
-				E6DECEA4188BFDD8000B8DFA /* rzut(stary).aifc in Resources */,
-				E6DECEA1188BFDD8000B8DFA /* rzut.aifc in Resources */,
-				E6DECEA6188BFDD8000B8DFA /* dziecko.aifc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

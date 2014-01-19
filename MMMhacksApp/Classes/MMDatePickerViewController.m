@@ -14,6 +14,8 @@
 #import <MessageUI/MessageUI.h>
 #import "UIView+JMNoise.h"
 #import "MMProfilePhotoCheckBox.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 #define DAYS 5
 #define HOURS 5
@@ -36,6 +38,10 @@
 @property (nonatomic, strong) UIView *noiseBG;
 @property (nonatomic, strong) NSMutableArray *_avatars;
 
+@property (nonatomic, strong) NSMutableArray *_dotSoundPlayers;
+@property (nonatomic, strong) AVAudioPlayer *_switchAudioPlayer;
+@property (nonatomic, strong) AVAudioPlayer *_endAudio;
+
 @property BOOL focusFinished;
 
 @end
@@ -49,6 +55,8 @@ int tab[7][7];
     if (self = [super init]) {
         self._myPerson = myPerson;
         self._people = people;
+        
+        [self _preloadMusic];
     }
     return self;
 }
@@ -179,6 +187,7 @@ int tab[7][7];
     [self performSelector:@selector(_addHoursLables) withObject:nil afterDelay:2.0];
     [self performSelector:@selector(_addHorizontalLines) withObject:nil afterDelay:2.0];
     [self _configureNodesAppearance];
+    
 }
 
 #pragma mark - MMDatePickerViewController ()
@@ -186,6 +195,8 @@ int tab[7][7];
 - (void)_focusOnBest
 {
     [self _countBestHours];
+    
+    [self._endAudio play];
 }
 
 - (void)_countBestHours
@@ -390,6 +401,7 @@ int tab[7][7];
     [self dismissViewControllerAnimated:YES completion:^{
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerVC animated:YES completion:nil];
     }];
+    [self _playSwitchAudio];
 }
 
 - (void)_configureAvatarAppearance
@@ -735,7 +747,7 @@ int tab[7][7];
             }
             
             tappedDot.selected = !tappedDot.isSelected;
-            
+            [self _playDotSound];
             [self _updateRankedHoursWithNodeDot:tappedDot];
             [self _updateConnectionLines];
         }
@@ -785,6 +797,9 @@ int tab[7][7];
             [self _updateRankedHoursWithNodeDot:dot];
             // Disable for futher interaction
             dot.userInteractionEnabled = NO;
+            
+            [self _playDotSound];
+            
         }
         case UIGestureRecognizerStateChanged: {
             for (MMNodeDot *dot in self._nodeDotViews) {
@@ -799,6 +814,7 @@ int tab[7][7];
                     // Disable for futher interaction
                     dot.userInteractionEnabled = NO;
                     
+                    [self _playDotSound];
                     [self _updateConnectionLines];
                     // Push animation
 //                    CGPoint transl = [gesture translationInView:gesture.view.superview];
@@ -847,6 +863,55 @@ int tab[7][7];
         
     }];
     
+}
+
+#pragma mark - Music
+
+- (void)_playDotSound
+{
+    static NSInteger count = 0;
+    count = (count + 1) % [self._dotSoundPlayers count];
+    
+    [((AVAudioPlayer *)self._dotSoundPlayers[count]) play];
+}
+
+- (void)_playSwitchAudio
+{
+    [self._switchAudioPlayer play];
+}
+
+- (void)_preloadMusic
+{
+    // Play sound
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                         pathForResource:@"ping"
+                                         ofType:@"aifc"]];
+    NSError *error = nil;
+    
+    self._dotSoundPlayers = [[NSMutableArray alloc] init];
+    
+    for (NSInteger i=0; i<5; i++) {
+    
+        AVAudioPlayer *player = [[AVAudioPlayer alloc]
+                             initWithContentsOfURL:url
+                             error:&error];
+        [self._dotSoundPlayers addObject:player];
+    }
+    
+    // switch
+    url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                         pathForResource:@"5"
+                                         ofType:@"aifc"]];
+    error = nil;
+    self._switchAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self._switchAudioPlayer.volume= 6.f;
+    
+    //
+    url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                  pathForResource:@"1"
+                                  ofType:@"wav"]];
+    error = nil;
+    self._endAudio = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
 }
 
 @end
