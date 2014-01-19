@@ -32,11 +32,9 @@
 @property (nonatomic, weak) MMNodeDot *_expandedNodeDot;
 
 @property (nonatomic, strong) MMPerson *_myPerson;
-@property (nonatomic, strong) NSMutableArray *_otherShitViews;@end
-@property (nonatomic, strong) UIView *noiseBG;
 @property (nonatomic, strong) NSMutableArray *_otherShitViews;
-@property (nonatomic, strong) NSMutableArray *_avatars;
 @property (nonatomic, strong) UIView *noiseBG;
+@property (nonatomic, strong) NSMutableArray *_avatars;
 
 @end
 
@@ -67,12 +65,11 @@
                 }
             }
             self._people = [allPeople mutableCopy];
-            [self _fillPeopleWithData];
-            NSLog(@"adding avatars");
             [self _addPeopleAvatars];
             
             [self _configureNodesAppearance];
-        } else {
+        }
+        else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];

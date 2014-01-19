@@ -328,7 +328,7 @@
 				ORGANIZATIONNAME = lobodzinski;
 				TargetAttributes = {
 					E64252D4188A7F1600549CAF = {
-						DevelopmentTeam = 48ARUEM5RP;
+						DevelopmentTeam = K923Y7RZ24;
 					};
 					E64252F8188A7F1600549CAF = {
 						TestTargetID = E64252D4188A7F1600549CAF;
