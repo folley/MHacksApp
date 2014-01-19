@@ -31,7 +31,7 @@
 
 - (UIColor *)mainLightGrayColor
 {
-    return [UIColor colorWithWhite:215./255. alpha:1.0];
+    return [UIColor colorWithWhite:212./255. alpha:1.0];
 }
 
 - (UIColor *)mainDarkGrayColor

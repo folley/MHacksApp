@@ -26,9 +26,9 @@ const float kMargin = 10;
         
         UIView *borderView = [[UIView alloc] initWithFrame:self.frame];
         borderView.layer.cornerRadius = self.frame.size.width/2;
-        borderView.layer.borderColor = [[[MMStyleSheet sharedInstance] mainDarkGrayColor] CGColor];
-        borderView.layer.borderWidth = 1;
-        borderView.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
+        borderView.layer.borderColor = [[[MMStyleSheet sharedInstance] mainGrayColor] CGColor];
+        borderView.layer.borderWidth = 2;
+        borderView.backgroundColor = [UIColor clearColor];
         
         [self addSubview:borderView];
 
@@ -46,26 +46,29 @@ const float kMargin = 10;
         _dateLabel.backgroundColor = [UIColor clearColor];
         _dateLabel.textColor = [UIColor whiteColor];
         _dateLabel.text = @"15";
-        _dateLabel.font = [UIFont fontWithName:@"Raleway-Light" size:36];
+        _dateLabel.font = [UIFont fontWithName:@"Raleway-Light" size:35];
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         [_dateLabel sizeToFit];
         _dateLabel.frame = CGRectMake(0, 0, _dateLabel.frame.size.width + 20, _dateLabel.frame.size.height);
         self.dateLabel.center = CGPointMake(self.frame.size.width/2.f,
-                                            40);
+                                            42);
         [self addSubview:_dateLabel];
         
         // Day label
         _dayLabel = [[UILabel alloc] init];
         _dayLabel.backgroundColor = [UIColor clearColor];
         _dayLabel.textColor = [UIColor whiteColor];
-        _dayLabel.text = @"Mon";
-        _dayLabel.font = [UIFont fontWithName:@"Raleway-Medium" size:15];
-        [_dayLabel sizeToFit];
-        self.dayLabel.center = CGPointMake(self.bounds.size.width/2.f,
-                                           self.bounds.size.height - _dayLabel.bounds.size.height-15);
+        _dayLabel.font = [UIFont fontWithName:@"Raleway-Medium" size:13];
         [self addSubview:_dayLabel];
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [_dayLabel sizeToFit];
+    self.dayLabel.center = CGPointMake(self.bounds.size.width/2.f,
+                                       self.bounds.size.height - _dayLabel.bounds.size.height-19);
 }
 
 @end

@@ -68,6 +68,12 @@
 {
     [super viewDidLoad];
     
+//    UIView *noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
+//    noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
+//    [noiseBG applyNoise];
+//    
+//    [self.view addSubview:noiseBG];
+    
     __nodeDotViews = [[NSMutableArray alloc] init];
     __nodesConnectionLines = [[NSMutableArray alloc] init];
     __currentlyPresentedAvatars = [[NSMutableArray alloc] init];
@@ -129,28 +135,7 @@
         [dot addGestureRecognizer:swipeGesture];
         
     }
-    
-    // Bottom view
-    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                self.view.frame.size.height - 60,
-                                                                self.view.frame.size.width,
-                                                                60)];
-    bottomBar.backgroundColor = [UIColor colorWithRed:28./255. green:36./255. blue:43/255. alpha:1.0];
-    bottomBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    
-    UIButton *focusButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [focusButton setTitle:@"Focus" forState:UIControlStateNormal];
-    [focusButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    [focusButton sizeToFit];
-    [focusButton addTarget:self action:@selector(_focusOnBest) forControlEvents:UIControlEventTouchUpInside];
-    focusButton.frame = CGRectMake(bottomBar.frame.size.width - focusButton.frame.size.width - 60,
-                                   0,
-                                   focusButton.frame.size.width,
-                                   bottomBar.frame.size.height);
-    focusButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [bottomBar addSubview:focusButton];
-    
-    [self.view addSubview:bottomBar];
+
     
     // Set up animator
     self._nodesAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -213,19 +198,33 @@
 {
     UIView *sidebarBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-100, 0,
                                                                  100, self.view.frame.size.height)];
-    sidebarBg.backgroundColor = [[MMStyleSheet sharedInstance] mainGrayColor];
+    sidebarBg.backgroundColor = [UIColor colorWithWhite:1. alpha:.5];
     [self.view addSubview:sidebarBg];
     
     for (NSInteger i=0; i<[self._people count]; i++) {
         MMPerson *person = self._people[i];
         UIImageView *avatarView = [[UIImageView alloc] initWithImage:person.avatarImage];
-        avatarView.frame = CGRectMake(0, 0, 60, 60);
+        avatarView.frame = CGRectMake(0, 0, 45, 45);
         avatarView.layer.cornerRadius = avatarView.frame.size.width/2.f;
         avatarView.clipsToBounds = YES;
         avatarView.center = CGPointMake(self.view.bounds.size.width - 50,
                                         200 + 100*i);
         [self.view addSubview:avatarView];
     }
+    
+    
+    UIButton *focusButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [focusButton setTitle:@"FOCUS" forState:UIControlStateNormal];
+    [focusButton setTitleColor:[[MMStyleSheet sharedInstance] greenColor] forState:UIControlStateNormal];
+    [focusButton setTitleColor:[[MMStyleSheet sharedInstance] mainDarkGrayColor] forState:UIControlStateDisabled];
+    [focusButton sizeToFit];
+    [focusButton addTarget:self action:@selector(_focusOnBest) forControlEvents:UIControlEventTouchUpInside];
+    focusButton.frame = CGRectMake(00,
+                                   645,
+                                   100,
+                                   200);
+    focusButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    [sidebarBg addSubview:focusButton];
 }
 
 - (void)_showDaysDots
