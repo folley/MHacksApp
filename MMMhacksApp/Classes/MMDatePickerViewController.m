@@ -40,6 +40,8 @@
 
 @implementation MMDatePickerViewController
 
+int tab[7][7];
+
 - (instancetype)initWithMainPerson:(MMPerson *)myPerson people:(NSArray *)people
 {
     if (self = [super init]) {
@@ -83,6 +85,12 @@
     _noiseBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1100, 1000)];
     _noiseBG.backgroundColor = [[MMStyleSheet sharedInstance] mainLightGrayColor];
     [_noiseBG applyNoise];
+    
+    for (int i=0; i<5; i++) {
+        for (int j=0; j<5; j++) {
+            tab[i][j] = 0;
+        }
+    }
     
     [self.view addSubview:_noiseBG];
     
@@ -171,12 +179,36 @@
 
 - (void)_focusOnBest
 {
-    [self _explodeNodesExcept:@[self._nodeDotViews[1],
-                                self._nodeDotViews[4],
-                                self._nodeDotViews[6],
-                                self._nodeDotViews[7]]];
+    [self _countBestHours];
 }
 
+- (void)_countBestHours
+{
+    for (MMPerson *person in self._people) {
+        NSArray *rankedHours = person.rankedHours;
+
+        NSLog(@"%@", rankedHours);
+        for (int i=0 ; i<MIN(DAYS, rankedHours.count) ; i++) {
+            for (NSNumber *number in rankedHours[i]) {
+                tab[i][number.integerValue]++;
+            }
+        }
+    }
+    
+    NSMutableArray *targets = [NSMutableArray new];
+    
+    for (NSInteger j=0; j<HOURS; j++) {
+        for (NSInteger i=0; i<DAYS; i++) {
+            if (tab[i][j] > 4) {
+                NSInteger nodeDotIndex = i + DAYS*j;
+                [targets addObject:self._nodeDotViews[nodeDotIndex]];
+            }
+        }
+    }
+    
+    [self _explodeNodesExcept:targets];
+
+}
 
 - (BOOL)table:(NSArray *)table contains:(MMNodeDot *)dot
 {
@@ -285,98 +317,6 @@
     }];
 
 }
-
-//- (void)_choseNodeAndExplode:(MMNodeDot *)selectedNode
-//{
-//    NSMutableArray *particles = [[NSMutableArray alloc] initWithCapacity:50];
-//    [self._nodesAnimator removeAllBehaviors];
-//    
-//    for (MMNodeDot *node in self._nodeDotViews) {
-//        if (node == selectedNode) {
-//            continue;
-//        }
-//        
-//        // Create particles
-//        for (NSInteger i=0; i<7; i++) {
-//            UIView *particle = [[UIView alloc] init];
-//            particle.frame = CGRectMake(0, 0, selectedNode.frame.size.width/2, selectedNode.frame.size.height/2);
-//            particle.center = [node.superview convertPoint:node.center
-//                                                    toView:self.view];
-//            particle.backgroundColor = node._dotView.backgroundColor;
-//            particle.layer.cornerRadius = particle.frame.size.width/2.f;
-//            particle.clipsToBounds = YES;
-//            [self.view addSubview:particle];
-//            
-//            [particles addObject:particle];
-//            
-//            node.alpha = 0.;
-//            
-//
-//            CABasicAnimation *anim1 = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
-//            anim1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//            anim1.fromValue = [NSNumber numberWithFloat:particle.layer.cornerRadius];
-//            anim1.toValue = [NSNumber numberWithFloat:0.0f];
-//            anim1.duration = 2;
-//            [particle.layer addAnimation:anim1 forKey:@"cornerRadius"];
-//            
-//            
-//            // Push
-//            UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[particle]
-//                                                                    mode:UIPushBehaviorModeInstantaneous];
-//            CGFloat randomX = 1. / (rand() % 200 + 100);
-//            CGFloat randomY = 1. / (rand() % 200 + 100);
-//            NSInteger randomSignX = rand() % 2 == 0 ? 1 : -1;
-//            NSInteger randomSignY = rand() % 2 == 0 ? 1 : -1;
-//            push.pushDirection = CGVectorMake(randomX * randomSignX,
-//                                              randomY * randomSignY);
-//            push.magnitude = 0.15;
-//            [self._nodesAnimator addBehavior:push];
-//            
-//            [UIView animateWithDuration:1.6 animations:^{
-//                particle.alpha = 0.f;
-//                particle.frame = CGRectMake(particle.frame.origin.x, particle.frame.origin.y, 0, 0);
-//            }];
-//        }
-//    }
-//    
-//    [UIView animateWithDuration:0.5 animations:^{
-//        for (UIView *view in self._nodesConnectionLines) {
-//            view.alpha = 0.f;
-//        }
-//        
-//        for (UIView *view in self._dateDotViews) {
-//            view.alpha = 0.f;
-//            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-//        }
-//        
-//        for (UIView *view in self._otherShitViews) {
-//            view.alpha = 0.f;
-//            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-//        }
-//    }];
-//    
-//    
-//    [UIView animateWithDuration:1.0 animations:^{
-//        selectedNode.center = CGPointMake(self.view.frame.size.height/2.f,
-//                                          self.view.frame.size.width/2.f);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.7 animations:^{
-//            selectedNode._dotView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-//            selectedNode._dotView.backgroundColor = [UIColor greenColor];
-//        } completion:^(BOOL finished) {
-//
-//            UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [confirmButton setTitle:@"Send confirmation" forState:UIControlStateNormal];
-//            [confirmButton sizeToFit];
-//            [confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-//            confirmButton.center = CGPointMake(self.view.frame.size.height/2.f,
-//                                               self.view.frame.size.width/2.f + 60);
-//            [confirmButton addTarget:self action:@selector(_sendConfirmation) forControlEvents:UIControlEventTouchUpInside];
-//            [self.view addSubview:confirmButton];
-//        }];
-//    }];
-//}
 
 - (void)_addPeopleAvatars
 {
