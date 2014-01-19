@@ -251,8 +251,13 @@
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
         line.alpha = 0.f;
         [self.view insertSubview:line atIndex:0];
-        [line connectBetweenView:self._dateDotViews[i]
-                      secondView:self._nodeDotViews[i]];
+        
+        CGPoint dateDotAnchor = CGPointMake(((MMDateDot *)self._dateDotViews[i]).center.x,
+                                            ((MMDateDot *)self._dateDotViews[i]).frame.origin.y +
+                                            ((MMDateDot *)self._dateDotViews[i]).frame.size.height);
+        
+        [line connectBetweenPoint:dateDotAnchor
+                      secondPoint:((MMNodeDot *)self._nodeDotViews[i]).center];
         
         [UIView animateWithDuration:0.3 animations:^{
             line.alpha = 1.f;
