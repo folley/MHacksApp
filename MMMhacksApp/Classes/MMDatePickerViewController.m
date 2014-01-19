@@ -295,19 +295,19 @@ int tab[7][7];
     }
     
     [UIView animateWithDuration:0.5 animations:^{
-        for (UIView *view in self._nodesConnectionLines) {
-            view.alpha = 0.f;
-        }
-        
-        for (UIView *view in self._dateDotViews) {
-            view.alpha = 0.f;
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-        }
-        
-        for (UIView *view in self._otherShitViews) {
-            view.alpha = 0.f;
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
-        }
+//        for (UIView *view in self._nodesConnectionLines) {
+//            view.alpha = 0.f;
+//        }
+//        
+//        for (UIView *view in self._dateDotViews) {
+//            view.alpha = 0.f;
+//            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+//        }
+//        
+//        for (UIView *view in self._otherShitViews) {
+//            view.alpha = 0.f;
+//            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1./100., 1./100.);
+//        }
     }];
     
     
@@ -318,12 +318,13 @@ int tab[7][7];
         } completion:^(BOOL finished) {
             
             UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [confirmButton setTitle:@"tap on green button to send confirmation" forState:UIControlStateNormal];
-            [confirmButton sizeToFit];
+            [confirmButton setTitle:@"Choose meeting hour to send confirmation" forState:UIControlStateNormal];
+            confirmButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
             [confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+            [confirmButton sizeToFit];
             confirmButton.center = CGPointMake(self.view.frame.size.height/2.f,
-                                               self.view.frame.size.width/2.f + 60);
+                                               self.view.frame.size.width/1 - 110);
             [confirmButton addTarget:self action:@selector(_sendConfirmation) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:confirmButton];
             self.focusFinished = YES;
@@ -653,7 +654,7 @@ int tab[7][7];
     MFMailComposeViewController *mailComposer = [[MFMailComposeViewController alloc] init];
     mailComposer.mailComposeDelegate = self;
     [mailComposer setSubject:@"Let's meet!"];
-    [mailComposer setMessageBody:@"Hey guys! We've just chosen the best time for our meeting!" isHTML:NO];
+    [mailComposer setMessageBody:@"Hey guys! We've just chosen the best time for our meeting! It's tomorrow at 11:AM. See you soon!" isHTML:NO];
     
     NSMutableArray *mails = [[NSMutableArray alloc] init];
     for (MMPerson *person in self._people) {
@@ -678,7 +679,7 @@ int tab[7][7];
         node.selected = NO;
     }
     [self _updateConnectionLines];
-}c
+}
 
 - (void)_addRestButton
 {
@@ -833,7 +834,19 @@ int tab[7][7];
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    [controller dismissViewControllerAnimated:YES completion:nil];
+    [controller dismissViewControllerAnimated:YES completion:^{
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            MMDatePickerViewController *vc = [[MMDatePickerViewController alloc] initWithMainPerson:self._people[0] people:self._people];
+            [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:vc
+                                                                                             animated:YES
+                                                                                           completion:nil];
+        }];
+        
+        [self resetData:nil];
+        
+    }];
+    
 }
 
 @end
