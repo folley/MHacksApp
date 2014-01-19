@@ -203,7 +203,7 @@
 {
     UIView *sidebarBg = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width-100, 0,
                                                                  100, self.view.frame.size.height)];
-    sidebarBg.backgroundColor = [UIColor colorWithWhite:1. alpha:.5];
+    sidebarBg.backgroundColor = [UIColor colorWithWhite:1. alpha:.8];
     [self.view addSubview:sidebarBg];
     
     for (NSInteger i=0; i<[self._people count]; i++) {
@@ -335,7 +335,7 @@
         
         MMConnectionLine *line = [[MMConnectionLine alloc] init];
         line.type = MMLineHorizontal;
-        line.alpha = 0.1f;
+        line.alpha = 0.3f;
         [self.view insertSubview:line atIndex:1];
         [line connectBetweenPoint:CGPointMake(firstHourNode.center.x - 100, firstHourNode.center.y)
                       secondPoint:CGPointMake(lastHourNode.center.x, lastHourNode.center.y)];
